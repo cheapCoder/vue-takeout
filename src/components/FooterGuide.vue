@@ -1,18 +1,18 @@
 <template>
   <div class="footerGuide">
-    <div class="footerItem" :class="{active: $route.path === '/msite'}" @click="$router.replace('/msite')">
+    <div class="footerItem" :class="{active: $route.path === '/msite'}" @click="footerActive('/msite')">
       <i class="iconfont iconxingzhuanggongnengtubiao-1"></i>
       <span>首页</span>
     </div>
-    <div class="footerItem" :class="{active: $route.path === '/search'}" @click="$router.replace('/search')">
+    <div class="footerItem" :class="{active: $route.path === '/search'}" @click="footerActive('/search')">
       <i class="iconfont iconxingzhuanggongnengtubiao-3"></i>
       <span>搜索</span>
     </div>
-    <div class="footerItem" :class="{active: $route.path === '/order'}" @click="$router.replace('/order')">
+    <div class="footerItem" :class="{active: $route.path === '/order'}" @click="footerActive('/order')">
       <i class="iconfont iconxingzhuanggongnengtubiao-2"></i>
       <span>订单</span>
     </div>
-    <div class="footerItem" :class="{active: $route.path === '/profile'}" @click="$router.replace('/profile')">
+    <div class="footerItem" :class="{active: $route.path === '/profile'}" @click="footerActive('/profile')">
       <i class="iconfont iconxingzhuanggongnengtubiao-"></i>
       <span>我的</span>
     </div>
@@ -22,34 +22,38 @@
 <script>
 export default {
   methods: {
-    // footerActive(path) {
-    //   this.$router.push(path);
-    // }
+    footerActive(path) {
+      this.$router.replace(path).catch((err) => {
+        console.log(err.message);
+      });
+    }
   },
 }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "../common/stylus/mixins.styl"
-  .footerGuide
-    top-border-1px(#eee)
-    bottom 0
-    left 0
-    position fixed
-    bottom 0
+@import "../common/stylus/mixins.styl"
+
+.footerGuide
+  top-border-1px(#eee)
+  background #fff
+  bottom 0
+  left 0
+  position fixed
+  bottom 0
+  display flex
+  width 100%
+  height  50px
+  box-sizing border-box
+  .active
+    color $green
+  .footerItem
+    height 50px
+    text-align center
+    width 25%
     display flex
-    width 100%
-    height  50px
-    box-sizing border-box
-    .active
-      color $green
-    .footerItem
-      height 50px
-      text-align center
-      width 25%
-      display flex
-      flex-direction column
-  .iconfont
-    font-size 22px
-    line-height 30px
+    flex-direction column
+.iconfont
+  font-size 22px
+  line-height 30px
 </style>
