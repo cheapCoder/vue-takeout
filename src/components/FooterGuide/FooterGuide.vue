@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-@import "../common/stylus/mixins.styl"
+@import "../../common/stylus/mixins.styl"
 
 .footerGuide
   top-border-1px(#eee)

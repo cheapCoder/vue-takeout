@@ -2,18 +2,22 @@
   <!--首页外卖-->
   <div class="on">
     <section class="msite">
-      <!--首页头部-->
-      <header class="msite_header">
-        <span class="header_search">
+      <HeaderGuide title="青岛">
+        <!--首页头部-->
+        <!-- <template v-slot:left>
+          <span>
           <i class="iconfont icon-sousuo"></i>
+          </span>
+        </template>-->
+        <span class="header_search" slot="left">
+          <i class="iconfont iconsousuo"></i>
         </span>
-        <span class="header_title">
-          <span class="header_title_text ellipsis">昌平区北七家宏福科技园(337省道北)</span>
-        </span>
-        <span class="header_login">
-          <span class="header_login_text">登录|注册</span>
-        </span>
-      </header>
+        <template v-slot:right>
+          <span class="header_login">
+            <span class="header_login_text">登录|注册</span>
+          </span>
+        </template>
+      </HeaderGuide>
       <!--首页导航-->
       <nav class="msite_nav">
         <div class="swiper-container">
@@ -302,8 +306,8 @@
 export default {};
 </script>
 
-<style scoped lang="stylus" rel="stylesheet/stylus">
-@import "../../common/stylus/mixins.styl";
+<style lang="stylus" rel="stylesheet/stylus">
+@import '../../common/stylus/mixins.styl';
 
 .header { // 头部公共css
   background-color: #02a774;
