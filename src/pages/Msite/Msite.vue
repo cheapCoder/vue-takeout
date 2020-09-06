@@ -125,6 +125,8 @@
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
+          <!--分页器。如果放置在swiper-container外面，需要自定义样式。-->
+          <!-- <div class="swiper-pagination">what hell of it</div> -->
         </div>
       </nav>
       <!--首页附近商家-->
@@ -303,11 +305,24 @@
 </template>
 
 <script type="text/ecmascript-6">
-export default {};
+import Swiper from "swiper";
+import "swiper/swiper-bundle.css";
+export default {
+  mounted() {
+    new Swiper(".swiper-container", {
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  },
+};
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/mixins.styl';
+
 
 .header { // 头部公共css
   background-color: #02a774;
