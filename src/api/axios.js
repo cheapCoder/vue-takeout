@@ -12,7 +12,7 @@ import qs from 'qs'
 
 const instance = axios.create({
   timeout: 20000,
-  baseUrl: 'http://localhost:8000/api'
+  baseURL: 'http://localhost:8000/api'
 });
 instance.interceptors.request.use((config) => {
   if (config.data instanceof Object) {
