@@ -26,10 +26,18 @@ module.exports = {
         // 'vue$': 'vue/dist/vue.esm.js',  // 表示精准匹配   带vue编译器
         '@': path.resolve(__dirname, 'src'),
         '@components': path.resolve(__dirname, 'src/components'),
+        '@pages': path.resolve(__dirname, 'src/pages'),
       }
     }
   },
   devServer: {
-    port: 4000
+    port: 8000,
+    proxy: {
+      '/api': {
+        target:'http://localhost:4000',
+        pathRewrite: {'^/api' : ''},
+        changeOrigin: true
+      },
+    }
   }
 }

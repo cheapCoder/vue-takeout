@@ -307,6 +307,7 @@
 <script type="text/ecmascript-6">
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
+
 export default {
   mounted() {
     new Swiper(".swiper-container", {

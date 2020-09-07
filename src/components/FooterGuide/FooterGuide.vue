@@ -23,9 +23,15 @@
 export default {
   methods: {
     footerActive(path) {
-      this.$router.replace(path).catch((err) => {
-        console.log(err.message);
-      });
+      // this.$router.replace(path).catch((err) => {
+      //   console.log(err.message);
+      // });
+      if(this.$route.path === path) {
+        window.location = path;
+      } else {
+        this.$router.replace(path)
+      }
+      
     }
   },
 }
