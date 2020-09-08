@@ -3,7 +3,7 @@
   <div class="on">
     <section class="msite">
       <HeaderGuide :title="address.city || '定位中...'">
-        <span class="header_search" slot="left"> 
+        <span class="header_search" slot="left">
           <i class="iconfont iconsousuo"></i>
         </span>
         <template v-slot:right>
@@ -14,114 +14,32 @@
       </HeaderGuide>
       <!--首页导航-->
       <nav class="msite_nav">
-        <div class="swiper-container">
+        <div class="swiper-container" v-if="foodCategories.length">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="link_to_food">
+            <div
+              class="swiper-slide"
+              v-for="(slideFoodCategory, index) in slideFoodCategories"
+              :key="index"
+            >
+              <div
+                class="link_to_food"
+                v-for="(foodCategory) in slideFoodCategory"
+                :key="foodCategory.id"
+              >
                 <div class="food_container">
-                  <img src="./images/nav/1.jpg" />
+                  <img :src="'https://fuss10.elemecdn.com'+foodCategory.image_url" />
                 </div>
-                <span>甜品饮品</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/2.jpg" />
-                </div>
-                <span>商超便利</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/3.jpg" />
-                </div>
-                <span>美食</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/4.jpg" />
-                </div>
-                <span>简餐</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/5.jpg" />
-                </div>
-                <span>新店特惠</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/6.jpg" />
-                </div>
-                <span>准时达</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/7.jpg" />
-                </div>
-                <span>预订早餐</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/8.jpg" />
-                </div>
-                <span>土豪推荐</span>
+                <span>{{foodCategory.title}}</span>
               </div>
             </div>
-            <div class="swiper-slide">
-              
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/9.jpg" />
-                </div>
-                <span>甜品饮品</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/10.jpg" />
-                </div>
-                <span>商超便利</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/11.jpg" />
-                </div>
-                <span>美食</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/12.jpg" />
-                </div>
-                <span>简餐</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/13.jpg" />
-                </div>
-                <span>新店特惠</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/14.jpg" />
-                </div>
-                <span>准时达</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/1.jpg" />
-                </div>
-                <span>预订早餐</span>
-              </div>
-              <div class="link_to_food">
-                <div class="food_container">
-                  <img src="./images/nav/2.jpg" />
-                </div>
-                <span>土豪推荐</span>
-              </div>
-            </div>
-          <!-- <div class="swiper-pagination">what the fuck</div> -->
+            <!-- <div class="swiper-pagination">what the fuck</div> -->
           </div>
           <!-- Add Pagination -->
           <!-- <div class="swiper-pagination"></div> -->
           <!--分页器。如果放置在swiper-container外面，需要自定义样式。-->
+        </div>
+        <div v-else>
+          <img src="./images/msite_back.svg" alt />
         </div>
       </nav>
       <!--首页附近商家-->
@@ -135,13 +53,17 @@
             <li class="shop_li border-1px" v-for="shop in shops" :key="shop.id">
               <a>
                 <div class="shop_left">
-                  <img class="shop_img" :src=" 'https://fuss10.elemecdn.com' + shop.image_url" />
+                  <img class="shop_img" :src="'https://fuss10.elemecdn.com'+ shop.image_path" />
                 </div>
                 <div class="shop_right">
                   <section class="shop_detail_header">
-                    <h4 class="shop_title ellipsis">{{shop.name}} </h4>
+                    <h4 class="shop_title ellipsis">{{shop.name}}</h4>
                     <ul class="shop_detail_ul">
-                      <li class="supports" v-for="support in shop.supports" :key="support.id">{{support.icon_name}}</li>
+                      <li
+                        class="supports"
+                        v-for="support in shop.supports"
+                        :key="support.id"
+                      >{{support.icon_name}}</li>
                     </ul>
                   </section>
                   <section class="shop_rating_order">
@@ -153,18 +75,18 @@
                         <span class="star-item half"></span>
                         <span class="star-item off"></span>
                       </div>
-                      <div class="rating_section">3.6</div>
-                      <div class="order_section">月售106单</div>
+                      <div class="rating_section">{{shop.rating}}</div>
+                      <div class="order_section">月售{{shop.recent_order_num}}单</div>
                     </section>
                     <section class="shop_rating_order_right">
-                      <span class="delivery_style delivery_right">硅谷专送</span>
+                      <span class="delivery_style delivery_right">{{shop.delivery_mode.text}}</span>
                     </section>
                   </section>
                   <section class="shop_distance">
                     <p class="shop_delivery_msg">
-                      <span>¥20起送</span>
+                      <span>¥{{shop.float_minimum_order_amount}}起送</span>
                       <span class="segmentation">/</span>
-                      <span>配送费约¥5</span>
+                      <span>配送费约¥{{shop.float_delivery_fee}}</span>
                     </p>
                   </section>
                 </div>
@@ -173,9 +95,9 @@
           </ul>
           <!-- 商家列表未加载完成时使用svg图代替 -->
           <ul v-else>
-              <img src="./images/shop_back.svg" alt="">
-              <img src="./images/shop_back.svg" alt="">
-              <img src="./images/shop_back.svg" alt="">
+            <img src="./images/shop_back.svg" alt />
+            <img src="./images/shop_back.svg" alt />
+            <img src="./images/shop_back.svg" alt />
           </ul>
         </div>
       </div>
@@ -186,25 +108,68 @@
 <script type="text/ecmascript-6">
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
+import chunk from "lodash/chunk";
 
 export default {
-  mounted() {
-    this.$store.dispatch("getFoodCategories")
-    this.$store.dispatch("getShops")
-
-
-    new Swiper(".swiper-container", {
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+  // 解决swiper对象new的过早的问题
+  // 方法一
+  // watch: {
+  //   foodCategories() {
+  //     this.$nextTick((new Swiper(".swiper-container", {
+  //     loop: true,
+  //     pagination: {
+  //       el: ".swiper-pagination",
+  //       clickable: true,
+  //     },
+  //   })))
+  //   }
+  // },
+  // 方法二
+  async mounted() {
+    this.$store.dispatch("getShops");
+    this.$store.dispatch("getFoodCategories", () => {
+      this.$nextTick(() => {
+        new Swiper(".swiper-container", {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      });
     });
+    // 方法三
+    // await this.$store.dispatch("getFoodCategories");
+    // new Swiper(".swiper-container", {
+    //   loop: true,
+    //   pagination: {
+    //     el: ".swiper-pagination",
+    //     clickable: true,
+    //   },
+    // });
   },
   computed: {
-    ...mapState(["address", "foodCategories", "shops"])
-},
+    ...mapState(["address", "foodCategories", "shops"]),
+    slideFoodCategories() {
+      // let arr = [];
+      // let slideArr = [];
+      // this.foodCategories.forEach((foodCategory, index, thisArr) => {
+      //   arr.push(foodCategory);
+      //   if (arr.length === 8) {
+      //     slideArr.push(arr);
+      //     arr = [];
+      //   }
+      //   if (index === thisArr.length - 1 && arr.length > 0) {
+      //     slideArr.push(arr);
+      //   }
+      // });
+      // return slideArr;
+
+      // 使用lodash
+      return chunk(this.foodCategories, 8);
+    },
+  },
 };
 </script>
 
@@ -257,6 +222,7 @@ export default {
     }
   }
 }
+
 .header { // 头部公共css
   background-color: #02a774;
   position: fixed;
@@ -353,8 +319,6 @@ export default {
     margin-top: 45px;
     height: 200px;
     background: #fff;
-
-    
   }
 
   .msite_shop_list {

@@ -17,7 +17,7 @@
                 :disabled="!isRightPhone"
                 class="get_verification"
                 :class="{on: isRightPhone}"
-                @click="sendVerificationCode"
+                @click.prevent="sendVerificationCode"
               >获取验证码</button>
             </section>
             <section class="login_verification">
@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     sendVerificationCode() {
-      console.log(3213);
       alert("are you OK?");
     },
   },

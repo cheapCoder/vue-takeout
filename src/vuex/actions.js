@@ -13,18 +13,18 @@ export default {
     }
   },
 
-  async getFoodCategories({ commit }) {
+  async getFoodCategories({ commit }, callback) {
     let result = await reqFoodCategories();
     if (result.code === 0) {
-      console.log(result);
       commit(GET_FOODCATEGORIES, result.data);
     }
+    // console.log( typeof callback);
+    typeof callback === 'function' && callback()
   },
 
   async getShops({ commit, state }) {
     let result = await reqShops(state.latitude, state.longitude);
     if (result.code === 0) {
-      console.log(result);
       commit(GET_SHOPS, result.data);
     }
   }
