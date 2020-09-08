@@ -3,19 +3,19 @@
   <header class="header">
     <slot name="left"></slot>
     <span class="header_title">
-      <span class="header_title_text ellipsis">{{$store.state.address.city}}</span>
+      <span class="header_title_text ellipsis">{{title}}</span>
     </span>
     <slot name="right"></slot>
   </header>
 </template>
 <script type="text/ecmascript-6">
 export default {
-  // props: {
-  //   title: {
-  //     type: String,
-  //     require: true
-  //   }
-  // }
+  props: {
+    title: {
+      type: String,
+      require: true
+    }
+  }
 };
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">

@@ -27,7 +27,7 @@ export default {
       //   console.log(err.message);
       // });
       if(this.$route.path === path) {
-        window.location = path;
+        window.location = "http://localhost:8000/#" + path;
       } else {
         this.$router.replace(path)
       }
