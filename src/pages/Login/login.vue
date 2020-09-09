@@ -154,6 +154,7 @@ export default {
       //   const success = await this.$validator.validateAll(["numCode", "tel"]);
       // }
       let result;
+      // 判断登陆方式并按方式发送对应请求
       if (this.useSms) {
         let smsLogin = {
           phone: this.tel_number,
