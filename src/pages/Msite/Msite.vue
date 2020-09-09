@@ -59,23 +59,18 @@
                   <section class="shop_detail_header">
                     <h4 class="shop_title ellipsis">{{shop.name}}</h4>
                     <ul class="shop_detail_ul">
-                      <li
-                        class="supports"
-                        v-for="support in shop.supports"
-                        :key="support.id"
-                      >{{support.icon_name}}</li>
+                      <li class="supports" v-for="support in shop.supports" :key="support.id">{{support.icon_name}}</li>
                     </ul>
                   </section>
                   <section class="shop_rating_order">
                     <section class="shop_rating_order_left">
-                      <div class="star star-24">
-                        <span class="star-item on"></span>
-                        <span class="star-item on"></span>
-                        <span class="star-item on"></span>
-                        <span class="star-item half"></span>
-                        <span class="star-item off"></span>
-                      </div>
-                      <div class="rating_section">{{shop.rating}}</div>
+                      <!-- <div class="star star-24" >
+                        <span class="star-item on" v-for="(num, index) in on" :key="index"></span>
+                        <span class="star-item half" v-for="(num, index) in half" :key="index"></span>
+                        <span class="star-item off" v-for="(num, index) in off" :key="index"></span>
+                      </div> -->
+                      <Star :rating="shop.rating" size="24"></Star>
+                      <div class="rating_section">{{shop.rating.toFixed(1)}}</div>
                       <div class="order_section">月售{{shop.recent_order_num}}单</div>
                     </section>
                     <section class="shop_rating_order_right">
@@ -110,6 +105,7 @@ import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import { mapState } from "vuex";
 import chunk from "lodash/chunk";
+import Star from '../../components/Star/star'
 
 export default {
   // 解决swiper对象new的过早的问题
@@ -152,6 +148,7 @@ export default {
   computed: {
     ...mapState(["address", "foodCategories", "shops"]),
     slideFoodCategories() {
+      // 方法一
       // let arr = [];
       // let slideArr = [];
       // this.foodCategories.forEach((foodCategory, index, thisArr) => {
@@ -166,10 +163,13 @@ export default {
       // });
       // return slideArr;
 
-      // 使用lodash
+      // 方法二 使用lodash
       return chunk(this.foodCategories, 8);
     },
   },
+  components: {
+      Star
+    }
 };
 </script>
 
@@ -424,90 +424,90 @@ export default {
                   float: left;
                   color: #ff9a0d;
 
-                  .star { // 2x图 3x图
-                    float: left;
-                    font-size: 0;
+                  // .star { // 2x图 3x图
+                  //   float: left;
+                  //   font-size: 0;
 
-                    .star-item {
-                      display: inline-block;
-                      background-repeat: no-repeat;
-                    }
+                  //   .star-item {
+                  //     display: inline-block;
+                  //     background-repeat: no-repeat;
+                  //   }
 
-                    &.star-48 {
-                      .star-item {
-                        width: 20px;
-                        height: 20px;
-                        margin-right: 22px;
-                        background-size: 20px 20px;
+                  //   &.star-48 {
+                  //     .star-item {
+                  //       width: 20px;
+                  //       height: 20px;
+                  //       margin-right: 22px;
+                  //       background-size: 20px 20px;
 
-                        &:last-child {
-                          margin-right: 0;
-                        }
+                  //       &:last-child {
+                  //         margin-right: 0;
+                  //       }
 
-                        &.on {
-                          bg-image('./images/stars/star48_on');
-                        }
+                  //       &.on {
+                  //         bg-image('./images/stars/star48_on');
+                  //       }
 
-                        &.half {
-                          bg-image('./images/stars/star48_half');
-                        }
+                  //       &.half {
+                  //         bg-image('./images/stars/star48_half');
+                  //       }
 
-                        &.off {
-                          bg-image('./images/stars/star48_off');
-                        }
-                      }
-                    }
+                  //       &.off {
+                  //         bg-image('./images/stars/star48_off');
+                  //       }
+                  //     }
+                  //   }
 
-                    &.star-36 {
-                      .star-item {
-                        width: 15px;
-                        height: 15px;
-                        margin-right: 6px;
-                        background-size: 15px 15px;
+                  //   &.star-36 {
+                  //     .star-item {
+                  //       width: 15px;
+                  //       height: 15px;
+                  //       margin-right: 6px;
+                  //       background-size: 15px 15px;
 
-                        &:last-child {
-                          margin-right: 0;
-                        }
+                  //       &:last-child {
+                  //         margin-right: 0;
+                  //       }
 
-                        &.on {
-                          bg-image('./images/stars/star36_on');
-                        }
+                  //       &.on {
+                  //         bg-image('./images/stars/star36_on');
+                  //       }
 
-                        &.half {
-                          bg-image('./images/stars/star36_half');
-                        }
+                  //       &.half {
+                  //         bg-image('./images/stars/star36_half');
+                  //       }
 
-                        &.off {
-                          bg-image('./images/stars/star36_off');
-                        }
-                      }
-                    }
+                  //       &.off {
+                  //         bg-image('./images/stars/star36_off');
+                  //       }
+                  //     }
+                  //   }
 
-                    &.star-24 {
-                      .star-item {
-                        width: 10px;
-                        height: 10px;
-                        margin-right: 3px;
-                        background-size: 10px 10px;
+                  //   &.star-24 {
+                  //     .star-item {
+                  //       width: 10px;
+                  //       height: 10px;
+                  //       margin-right: 3px;
+                  //       background-size: 10px 10px;
 
-                        &:last-child {
-                          margin-right: 0;
-                        }
+                  //       &:last-child {
+                  //         margin-right: 0;
+                  //       }
 
-                        &.on {
-                          bg-image('./images/stars/star24_on');
-                        }
+                  //       &.on {
+                  //         bg-image('./images/stars/star24_on');
+                  //       }
 
-                        &.half {
-                          bg-image('./images/stars/star24_half');
-                        }
+                  //       &.half {
+                  //         bg-image('./images/stars/star24_half');
+                  //       }
 
-                        &.off {
-                          bg-image('./images/stars/star24_off');
-                        }
-                      }
-                    }
-                  }
+                  //       &.off {
+                  //         bg-image('./images/stars/star24_off');
+                  //       }
+                  //     }
+                  //   }
+                  // }
 
                   .rating_section {
                     float: left;

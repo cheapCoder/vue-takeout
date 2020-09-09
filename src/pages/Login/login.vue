@@ -2,7 +2,7 @@
   <section class="loginContainer">
     <div class="loginInner">
       <div class="login_header">
-        <h2 class="login_logo">硅谷外卖</h2>
+        <h2 class="login_logo">外卖</h2>
         <div class="login_header_title">
           <a href="javascript:;" :class="{on: useSms}" @click="useSms = true">短信登录</a>
           <a href="javascript:;" :class="{on: !useSms}" @click="useSms = false">密码登录</a>
@@ -12,16 +12,30 @@
         <form>
           <div :class="{on: useSms}">
             <section class="login_message">
-              <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
+              <!-- <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
               <button
-                :disabled="!isRightPhone"
+                :disabled="!isRightPhone || intervalLastTime > 0"
                 class="get_verification"
                 :class="{on: isRightPhone}"
-                @click.prevent="sendVerificationCode"
-              >获取验证码</button>
+                @click.prevent="getSmsCaptcha"
+              >{{intervalLastTime ? `剩余${intervalLastTime}` : '获取验证码'}}</button>-->
+              <ValidationProvider rules="tel" v-slot="{ errors }">
+                <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
+                <span style="color: red">{{ errors[0] }}</span>
+                <!-- 发送短信验证码按钮 -->
+                <button
+                  :disabled="!isRightPhone || intervalLastTime > 0"
+                  class="get_verification"
+                  :class="{on: isRightPhone}"
+                  @click.prevent="getSmsCaptcha"
+                >{{intervalLastTime ? `剩余${intervalLastTime}s` : '获取验证码'}}</button>
+              </ValidationProvider>
             </section>
             <section class="login_verification">
-              <input type="tel" maxlength="8" placeholder="验证码" />
+              <ValidationProvider rules="numCode" v-slot="{ errors }">
+                <input type="tel" maxlength="8" placeholder="验证码" v-model="smsCaptcha" />
+                <span style="color: red">{{ errors[0] }}</span>
+              </ValidationProvider>
             </section>
             <section class="login_hint">
               温馨提示：未注册硅谷外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -31,10 +45,15 @@
           <div :class="{on: !useSms}">
             <section>
               <section class="login_message">
-                <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名" />
+                <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名" v-model="name" />
               </section>
               <section class="login_verification">
-                <input :type="passwordShow ? 'text' : 'password'" maxlength="8" placeholder="密码" />
+                <input
+                  :type="passwordShow ? 'text' : 'password'"
+                  maxlength="8"
+                  placeholder="密码"
+                  v-model="password"
+                />
                 <div
                   class="switch_button"
                   :class="{off: passwordShow}"
@@ -45,12 +64,18 @@
                 </div>
               </section>
               <section class="login_message">
-                <input type="text" maxlength="11" placeholder="验证码" />
-                <img class="get_verification" src="./captcha.svg" alt="captcha" />
+                <input type="text" maxlength="11" placeholder="验证码" v-model="picCaptcha" />
+                <img
+                  class="get_verification"
+                  ref="captcha"
+                  src="http://localhost:4000/captcha"
+                  alt="captcha"
+                  @click.prevent="getPWCaptcha"
+                />
               </section>
             </section>
           </div>
-          <button class="login_submit">登录</button>
+          <button class="login_submit" @click.prevent="login">登录</button>
         </form>
         <a href="javascript:;" class="about_us">关于我们</a>
       </div>
@@ -60,13 +85,34 @@
     </div>
   </section>
 </template>
+
+
 <script type="text/ecmascript-6">
+import { Toast } from "mint-ui";
+import { ValidationProvider, extend } from "vee-validate";
+
+extend("tel", {
+  validate: (value) => /^1\d{10}$/.test(value),
+  message: "电话号码格式错误",
+});
+extend("numCode", {
+  validate: (value) => /^\d{4,6}$/.test(value),
+  message: "验证码格式错误",
+});
+
 export default {
   data() {
     return {
       useSms: true,
-      tel_number: "",
       passwordShow: false,
+      intervalLastTime: 0,
+
+      tel_number: "",
+      smsCaptcha: "",
+
+      name: "",
+      password: "",
+      picCaptcha: "",
     };
   },
   computed: {
@@ -75,9 +121,54 @@ export default {
     },
   },
   methods: {
-    sendVerificationCode() {
-      alert("are you OK?");
+    async getSmsCaptcha() {
+      this.intervalLastTime = 5;
+
+      // 防抖
+      lastTimeId && clearInterval(lastTimeId);
+      let lastTimeId = setInterval(() => {
+        this.intervalLastTime--;
+        this.intervalLastTime === 0 && clearInterval(lastTimeId);
+      }, 1000);
+      // 发送短信验证码
+      const result = await this.$api.reqSmsCaptcha(this.tel_number);
+      if (!result.code) {
+        Toast({
+          message: "短信发送成功",
+          position: "bottom",
+          duration: 1000,
+        });
+      } else {
+        alert(result.msg);
+      }
     },
+    getPWCaptcha() {
+      this.$refs.captcha.src =
+        "http://localhost:4000/captcha?time=" + Date.now();
+    },
+    async login() {
+      let result;
+      if (this.useSms == true) {
+        let smsLogin = {
+          phone: this.tel_number,
+          smsCaptcha: this.smsCaptcha,
+        };
+        result = await this.$api.reqSmsLogin(smsLogin);
+      } else {
+        let pwLogin = {
+          name: this.name,
+          pwd: this.password,
+          captcha: this.picCaptcha.toLowerCase(),
+        };
+        result = await this.$api.reqPwLogin(pwLogin);
+        // this.getPWCaptcha();
+      }
+      
+      console.log(result);
+    },
+  },
+  components: {
+    ValidationProvider,
   },
 };
 </script>

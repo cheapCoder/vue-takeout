@@ -7,7 +7,7 @@ import Login from '../pages/Login/login.vue'
 export default [
   {
     path: '/',
-    redirect: '/msite'
+    redirect: '/login'
   },
   {
     path: '/msite',

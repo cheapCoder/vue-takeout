@@ -14,7 +14,7 @@ import { Indicator } from 'mint-ui';
 
 const instance = axios.create({
   timeout: 20000,
-  baseURL: 'http://localhost:8000/api'
+  baseURL: '/api'
 });
 instance.interceptors.request.use((config) => {
   Indicator.open('加载中...');
