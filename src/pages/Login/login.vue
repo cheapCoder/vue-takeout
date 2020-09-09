@@ -19,7 +19,7 @@
                 :class="{on: isRightPhone}"
                 @click.prevent="getSmsCaptcha"
               >{{intervalLastTime ? `剩余${intervalLastTime}` : '获取验证码'}}</button>-->
-              <ValidationProvider rules="tel" v-slot="{ errors }">
+              <ValidationProvider rules="tel" v-slot="{ errors }" name='tel'>
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
                 <span style="color: red">{{ errors[0] }}</span>
                 <!-- 发送短信验证码按钮 -->
@@ -32,7 +32,7 @@
               </ValidationProvider>
             </section>
             <section class="login_verification">
-              <ValidationProvider rules="numCode" v-slot="{ errors }">
+              <ValidationProvider rules="numCode" v-slot="{ errors }" name= "numCode">
                 <input type="tel" maxlength="8" placeholder="验证码" v-model="smsCaptcha" />
                 <span style="color: red">{{ errors[0] }}</span>
               </ValidationProvider>
@@ -89,7 +89,7 @@
 
 <script type="text/ecmascript-6">
 import { Toast } from "mint-ui";
-import { ValidationProvider, extend } from "vee-validate";
+import { ValidationProvider, extend, validator } from "vee-validate";
 
 extend("tel", {
   validate: (value) => /^1\d{10}$/.test(value),
@@ -147,8 +147,15 @@ export default {
         "http://localhost:4000/captcha?time=" + Date.now();
     },
     async login() {
+      // 前端验证未加
+      // if(this.useSms) {
+      //   const success = await this.$validator.validateAll(["numCode", "tel"]);
+      // } else {
+      //   const success = await this.$validator.validateAll(["numCode", "tel"]);
+      // }
+
       let result;
-      if (this.useSms == true) {
+      if (this.useSms) {
         let smsLogin = {
           phone: this.tel_number,
           smsCaptcha: this.smsCaptcha,
@@ -161,10 +168,12 @@ export default {
           captcha: this.picCaptcha.toLowerCase(),
         };
         result = await this.$api.reqPwLogin(pwLogin);
-        // this.getPWCaptcha();
       }
-      
       console.log(result);
+      if(!result.code) {
+        this.$router.push("/profile")
+      }
+
     },
   },
   components: {
