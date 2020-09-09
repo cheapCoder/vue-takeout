@@ -19,7 +19,7 @@
                 :class="{on: isRightPhone}"
                 @click.prevent="getSmsCaptcha"
               >{{intervalLastTime ? `剩余${intervalLastTime}` : '获取验证码'}}</button>-->
-              <ValidationProvider rules="tel" v-slot="{ errors }" name='tel'>
+              <ValidationProvider rules="tel" v-slot="{ errors }" name="tel">
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
                 <span style="color: red">{{ errors[0] }}</span>
                 <!-- 发送短信验证码按钮 -->
@@ -32,7 +32,7 @@
               </ValidationProvider>
             </section>
             <section class="login_verification">
-              <ValidationProvider rules="numCode" v-slot="{ errors }" name= "numCode">
+              <ValidationProvider rules="numCode" v-slot="{ errors }" name="numCode">
                 <input type="tel" maxlength="8" placeholder="验证码" v-model="smsCaptcha" />
                 <span style="color: red">{{ errors[0] }}</span>
               </ValidationProvider>
@@ -89,7 +89,7 @@
 
 <script type="text/ecmascript-6">
 import { Toast } from "mint-ui";
-import { ValidationProvider, extend, validator } from "vee-validate";
+import { ValidationProvider, extend } from "vee-validate";
 
 extend("tel", {
   validate: (value) => /^1\d{10}$/.test(value),
@@ -153,7 +153,6 @@ export default {
       // } else {
       //   const success = await this.$validator.validateAll(["numCode", "tel"]);
       // }
-
       let result;
       if (this.useSms) {
         let smsLogin = {
@@ -165,15 +164,20 @@ export default {
         let pwLogin = {
           name: this.name,
           pwd: this.password,
-          captcha: this.picCaptcha.toLowerCase(),
+          captcha: this.picCaptcha,
         };
         result = await this.$api.reqPwLogin(pwLogin);
       }
-      console.log(result);
-      if(!result.code) {
-        this.$router.push("/profile")
+      if (result.code) {
+        Toast(result.msg);
+        this.picCaptcha = ""
+        this.getPWCaptcha();
+      } else {
+        this.$store.dispatch("setUser", result.data);
+        localStorage.setItem("userToken", result.data.token);
+        this.$router.push("/profile");
+        console.log(result);
       }
-
     },
   },
   components: {

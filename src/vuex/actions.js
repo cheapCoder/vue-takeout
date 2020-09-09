@@ -1,5 +1,5 @@
 import {
-  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS
+  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE
 } from './mutation-type';
 
 import { reqAddress, reqFoodCategories, reqShops } from '../api/index';
@@ -27,5 +27,10 @@ export default {
     if (result.code === 0) {
       commit(GET_SHOPS, result.data);
     }
+  },
+
+  // 更改用户信息项
+  setUser({ commit }, user) {
+    commit(GET_USERMESSAGE, user);
   }
 }
