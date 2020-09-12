@@ -1,5 +1,5 @@
 import {
-  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE
+  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE, REMOVEUSER
 } from './mutation-type'
 
 export default {
@@ -14,5 +14,8 @@ export default {
   },
   [GET_USERMESSAGE](state, user) {
     state.user = user;
+  },
+  [REMOVEUSER] (state ) {
+    state.user = {};
   }
 }

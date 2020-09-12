@@ -4,12 +4,19 @@ export const reqAddress = async function (geohash) {
   return instance(`/position/${geohash}`)
 }
 
-export const reqFoodCategories = () => instance("/index_category")
+export const reqFoodCategories = () => instance("/index_category", {
+  headers: {
+    needToken: true
+  }
+})
 
 export const reqShops = (latitude, longitude) => instance("/shops", {
   params: {
     latitude,
     longitude
+  },
+  headers: {
+    needToken: true
   }
 })
 
@@ -18,6 +25,9 @@ export const reqSmsCaptcha = function (phone) {
   return instance("/sendcode", {
     params: {
       phone
+    },
+    headers: {
+      needToken: false
     }
   })
 }
@@ -30,6 +40,9 @@ export const reqPwLogin = ({name, pwd, captcha }) => instance({
     name,
     pwd,
     captcha
+  },
+  headers: {
+    needToken: false
   }
 })
 // 手机号验证码登陆
@@ -39,11 +52,16 @@ export const reqSmsLogin = ({ phone, smsCaptcha  }) => instance({
   data: {
     phone,
     code: smsCaptcha
+  },
+  headers: {
+    needToken: false
   }
 })
 
-// // 5.用户名密码登陆
-// export const reqPwdLogin = ({name, pwd, captcha}) => instance.post('/login_pwd', {name, pwd, captcha})
-
-// // 6. 手机号验证码登陆
-// export const reqSmsLogin = ({phone, smsCaptcha}) => instance.post('/login_sms', {phone, code: smsCaptcha})
+// 自动登录请求
+export const reqAutoLogin = () => instance({
+  url: '/auto_login',
+  headers: {
+    needToken: true
+  },
+})

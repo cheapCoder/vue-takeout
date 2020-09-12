@@ -5,3 +5,4 @@ export const GET_ADDRESS = 'getAddress';
 export const GET_FOODCATEGORIES = 'getFoodCategories';
 export const GET_SHOPS = 'getShops';
 export const GET_USERMESSAGE = 'getUserMessage';
+export const REMOVEUSER = 'removeUser';

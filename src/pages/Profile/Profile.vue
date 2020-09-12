@@ -96,12 +96,17 @@
           </div>
         </a>
       </section>
+      <section class="loginOut">
+        <mt-button style="width: 100%; margin-top: 30px" type="danger" @click="loginOut">退出登录</mt-button>
+      </section>
     </section>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
 import { mapState } from "vuex";
+import { MessageBox } from "mint-ui";
+
 export default {
   computed: {
     ...mapState(["user"]),
@@ -112,6 +117,13 @@ export default {
       // location.assign("/login");
       // }
       this.user._id || location.assign("/login");
+    },
+    loginOut() {
+      MessageBox.confirm("确认退出", this.user.name || this.user.phone || '').then(
+        () => {
+          this.$store.dispatch("loginOut");
+        }
+      );
     },
   },
 };

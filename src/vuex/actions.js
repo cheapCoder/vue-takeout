@@ -1,8 +1,8 @@
 import {
-  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE
+  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE, REMOVEUSER
 } from './mutation-type';
 
-import { reqAddress, reqFoodCategories, reqShops } from '../api/index';
+import { reqAddress, reqFoodCategories, reqShops, reqAutoLogin } from '../api/index';
 
 export default {
   async getAddress({ commit, state }) {
@@ -31,6 +31,22 @@ export default {
 
   // 更改用户信息项
   setUser({ commit }, user) {
+    // 存储token
+    localStorage.setItem("userToken", user.token);
     commit(GET_USERMESSAGE, user);
+  },
+
+  // 自动登录并更新用户信息
+  async login_auto({ commit }) {
+    const result = await reqAutoLogin();
+    console.log(result);
+    result.code || commit(GET_USERMESSAGE, result.data);
+  },
+
+  // 登出功能
+  loginOut({commit}) {
+    localStorage.removeItem("userToken");
+    commit(REMOVEUSER)
+
   }
 }

@@ -13,7 +13,8 @@ export default {
     FooterGuide,
   },
   mounted() {
-    this.$store.dispatch('getAddress')
+    this.$store.dispatch('getAddress');
+    this.$store.dispatch("login_auto");
   },
 };
 </script>

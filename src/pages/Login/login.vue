@@ -84,6 +84,7 @@
       </a>
     </div>
   </section>
+  <aside class="changeLang">click to change language</aside>
 </template>
 
 
@@ -175,11 +176,14 @@ export default {
         this.getPWCaptcha();
       } else {
         this.$store.dispatch("setUser", result.data);
-        localStorage.setItem("userToken", result.data.token);
+        // 登录后跳转路由
         this.$router.push("/profile");
-        console.log(result);
+        // console.log(result);
       }
     },
+    changeLang() {
+      
+    }
   },
   components: {
     ValidationProvider,
