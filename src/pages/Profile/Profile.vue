@@ -97,7 +97,7 @@
         </a>
       </section>
       <section class="loginOut">
-        <mt-button style="width: 100%; margin-top: 30px" type="danger" @click="loginOut">退出登录</mt-button>
+        <mt-button style="width: 100%; margin-top: 30px" type="danger" @click="loginOut">{{$t('loginOut')}}</mt-button>
       </section>
     </section>
   </div>
@@ -122,6 +122,7 @@ export default {
       MessageBox.confirm("确认退出", this.user.name || this.user.phone || '').then(
         () => {
           this.$store.dispatch("loginOut");
+          this.$router.replace("/login")
         }
       );
     },

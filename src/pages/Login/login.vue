@@ -75,7 +75,7 @@
               </section>
             </section>
           </div>
-          <button class="login_submit" @click.prevent="login">登录</button>
+          <button class="login_submit" @click.prevent="login">{{$t("login")}}</button>
         </form>
         <a href="javascript:;" class="about_us">关于我们</a>
       </div>
@@ -83,13 +83,13 @@
         <i class="iconfont icon-jiantou2"></i>
       </a>
     </div>
+    <mt-button class="lanBtn" type="primary" @click="changeLang">{{$t("language")}}</mt-button>
   </section>
-  <aside class="changeLang">click to change language</aside>
 </template>
 
 
 <script type="text/ecmascript-6">
-import { Toast } from "mint-ui";
+import { Toast  } from "mint-ui";
 import { ValidationProvider, extend } from "vee-validate";
 
 extend("tel", {
@@ -171,8 +171,12 @@ export default {
         result = await this.$api.reqPwLogin(pwLogin);
       }
       if (result.code) {
-        Toast(result.msg);
-        this.picCaptcha = ""
+        Toast({
+          message: result.msg,
+          duration: 1000
+        });
+        
+        this.picCaptcha = "";
         this.getPWCaptcha();
       } else {
         this.$store.dispatch("setUser", result.data);
@@ -182,17 +186,29 @@ export default {
       }
     },
     changeLang() {
-      
-    }
+      // console.log(this.$i18n);
+      let lan = this.$i18n.locale
+      this.$i18n.locale = lan === 'en' ? 'zh-CN' : 'en';
+    },
   },
   components: {
     ValidationProvider,
+    
   },
 };
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
 @import '../../common/stylus/mixins.styl';
 
+.lanBtn {
+  background-color #02a774
+  width 45px
+  height 20px
+  font-size 1px
+  position fixed
+  right 20px 
+  top 20px
+}
 .loginContainer {
   width: 100%;
   height: 100%;

@@ -2,19 +2,19 @@
   <div class="footerGuide">
     <div class="footerItem" :class="{active: $route.path === '/msite'}" @click="footerActive('/msite')">
       <i class="iconfont iconxingzhuanggongnengtubiao-1"></i>
-      <span>首页</span>
+      <span>{{$t("msite")}}</span>
     </div>
     <div class="footerItem" :class="{active: $route.path === '/search'}" @click="footerActive('/search')">
       <i class="iconfont iconxingzhuanggongnengtubiao-3"></i>
-      <span>搜索</span>
+      <span>{{$t("search")}}</span>
     </div>
     <div class="footerItem" :class="{active: $route.path === '/order'}" @click="footerActive('/order')">
       <i class="iconfont iconxingzhuanggongnengtubiao-2"></i>
-      <span>订单</span>
+      <span>{{$t("order")}}</span>
     </div>
     <div class="footerItem" :class="{active: $route.path === '/profile'}" @click="footerActive('/profile')">
       <i class="iconfont iconxingzhuanggongnengtubiao-"></i>
-      <span>我的</span>
+      <span>{{$t("profile")}}</span>
     </div>
   </div>
 </template>

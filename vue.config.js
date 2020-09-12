@@ -10,6 +10,7 @@ const postcss = px2rem({
 module.exports = {
   runtimeCompiler: true,
   lintOnSave: false,
+
   css: { // 添加postcss配置
     loaderOptions: {
       postcss: {
@@ -19,6 +20,7 @@ module.exports = {
       }
     }
   },
+
   configureWebpack: { // 内部写webpack原生配置
     resolve: {
       extensions: ['.js', '.vue', '.json'], // 可以省略的后缀名
@@ -30,6 +32,7 @@ module.exports = {
       }
     }
   },
+
   devServer: {
     port: 8000,
     proxy: {
@@ -38,6 +41,15 @@ module.exports = {
         pathRewrite: {'^/api' : ''},
         changeOrigin: true
       },
+    }
+  },
+
+  pluginOptions: {
+    i18n: {
+      locale: 'en',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false
     }
   }
 }

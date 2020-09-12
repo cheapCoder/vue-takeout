@@ -54,7 +54,7 @@ instance.interceptors.response.use(
         console.log('401了');
         if (router.currentRoute.path !== '/login') {
           // router.currentRoute.path = '/login';
-          // router.replace('/login');
+          router.replace('/login');
 
         }
       } else if (err.response.status === 404) {
