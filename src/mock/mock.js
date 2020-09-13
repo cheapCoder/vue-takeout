@@ -3,8 +3,6 @@ import data from "./data.json"
 // const Mock = require('mockjs');
 import Mock from 'mockjs'
 
-Mock.mock('/shopGoods', {code: 0, data.goods}) 
-Mock.mock('/ShopInfo', {code: 0, data.info}) 
-Mock.mock('/ShopRating', {code: 0, data.ratings}) 
+Mock.mock('/api/shopMsg', { code: 0, data })
 
 console.log("mock is serve...");

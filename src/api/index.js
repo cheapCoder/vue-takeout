@@ -66,6 +66,4 @@ export const reqAutoLogin = () => instance({
   },
 })
 
-export const reqShopGoods = () => instance("/shopGoods")
-export const reqShopInfo = () => instance("/ShopInfo")
-export const reqShopRating = () => instance("/ShopRating")
+export const reqShopMsg = () => instance("/shopMsg")

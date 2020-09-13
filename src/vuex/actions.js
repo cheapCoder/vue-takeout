@@ -2,7 +2,7 @@ import {
   GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE, REMOVEUSER, GET_SHOP_MSG
 } from './mutation-type';
 
-import { reqAddress, reqFoodCategories, reqShops, reqAutoLogin } from '../api/index';
+import { reqAddress, reqFoodCategories, reqShops, reqAutoLogin, reqShopMsg } from '../api/index';
 import router from '../router';
 
 export default {
@@ -56,10 +56,12 @@ export default {
   },
 
   // 获取单个商家的信息
-  getShopMsg({commit}, index) {
-
-    
-    commit(GET_SHOP_MSG, shopMsg)
+  async getShopMsg({ commit }) {
+    const shopMsg = await reqShopMsg();
+    if (!shopMsg.code) {
+      commit(GET_SHOP_MSG, shopMsg.data)
+    }
   }
 }
+
 

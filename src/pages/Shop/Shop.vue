@@ -1,7 +1,7 @@
 <template>
   <div class="shop-header">
     <nav class="shop-nav"
-         style="background-image: url('https://fuss10.elemecdn.com/f/5c/ead54394c3de198d3e6d3e9111bbfpng.png');">
+         :style="`background-image: url('https://fuss10.elemecdn.com/f/5c/ead54394c3de198d3e6d3e9111bbfpng.png');`">
       <a class="back">
         <i class="iconfont icon-arrow_left"/>
       </a>
@@ -119,7 +119,7 @@
 <script type="text/ecmascript-6">
   export default {
       mounted() {
-        getShopMsg()
+        this.$store.dispatch("getShopMsg");
       },
   }
 </script>
