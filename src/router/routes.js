@@ -50,17 +50,21 @@ export default [
     component: Shop,
     children: [
       {
-        path: 'goods',
-        components: ShopGoods,
+        path: '/shop/goods',
+        component: ShopGoods,
       },
       {
-        path: 'shopInfo',
-        components: ShopInfo,
+        path: '/shop/shopInfo',
+        component: ShopInfo,
       },
       {
-        path: 'shopRatings',
-        components: ShopRatings,
+        path: '/shop/shopRatings',
+        component: ShopRatings,
       },
+      {
+        path: '',
+        redirect: "/shop/goods"
+      }
     ]
   },
   

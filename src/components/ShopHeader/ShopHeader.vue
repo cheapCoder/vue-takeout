@@ -1,8 +1,8 @@
 <template>
   <div class="shop-header" v-if="shopMsg.info">
     <nav class="shop-nav" :style="`background-image: url(${shopMsg.info.bgImg});`">
-      <a class="back">
-        <i class="iconfont icon-arrow_left" />
+      <a class="back" style="color:black;margin: 5px 10px">
+        <i class="iconfont iconhoutui" @click="$router.go(-1)" />
       </a>
     </nav>
     <div class="shop-content">
@@ -98,7 +98,7 @@
             </li>
           </ul>
           <div class="activity-sheet-close">
-            <span class="iconfont icon-close"></span>
+            <span class="iconfont iconguanbi_huaban1" @click="showDiscount = false"></span>
           </div>
         </div>
         <div class="activity-sheet-cover" @click="showDiscount = false"></div>
@@ -116,14 +116,11 @@ export default {
       discountColor: ["activity-green", "activity-red", "activity-orange"],
     };
   },
-  mounted() {
-    this.$store.dispatch("getShopMsg");
-  },
+  
   computed: {
     ...mapState(["shopMsg"]),
   },
 };
-
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
@@ -138,12 +135,12 @@ export default {
 }
 
 // .shopDiscount-enter-active, .shopDiscount-leave-active {
-//   transition: all 0.4s;
+// transition: all 0.4s;
 // }
 
 // .shopDiscount-enter, .shopDiscount-leave-to {
-//   opacity: 0;
-//   transform: translate(0, 240px);
+// opacity: 0;
+// transform: translate(0, 240px);
 // }
 .shop-header {
   height: 100%;
