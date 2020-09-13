@@ -45,6 +45,7 @@ export default {
         commit(GET_USERMESSAGE, result.data);
         let arr = ["/msite", "/order", "/search", "/profile", "/", "/msite/shop"]
         arr.indexOf(router.currentRoute.path) > -1 || router.replace('/msite');
+        // router.currentRoute.path === "/login" && router.replace('/msite');
       }
     }
   },

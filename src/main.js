@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'lib-flexible/flexible'
-import { Button } from 'mint-ui';
+import { Button , Popup} from 'mint-ui';
 
 import router from './router'
 import Header from './components/Header/Header.vue'
@@ -17,6 +17,7 @@ Vue.prototype.$api = api;
 
 Vue.component('HeaderGuide', Header)
 Vue.component(Button.name, Button);
+Vue.component(Popup.name, Popup);
 
 new Vue({
   render: h => h(App),
