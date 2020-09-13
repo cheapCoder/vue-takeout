@@ -83,7 +83,7 @@
         <i class="iconfont icon-jiantou2"></i>
       </a>
     </div>
-    <mt-button class="lanBtn" type="primary" @click="changeLang">{{$t("language")}}</mt-button>
+    <mt-button  class="lanBtn" type="primary" @click="changeLang">{{$t("language")}}</mt-button>
   </section>
 </template>
 
@@ -202,7 +202,7 @@ export default {
 
 .lanBtn {
   background-color #02a774
-  width 45px
+  width 55px
   height 20px
   font-size 1px
   position fixed

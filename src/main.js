@@ -7,7 +7,8 @@ import router from './router'
 import Header from './components/Header/Header.vue'
 import store from './vuex/store';
 import * as api from './api/index';
-import i18n from './i18n'
+import i18n from './i18n';
+import "./mock/mock";
 
 Vue.config.productionTip = false
 

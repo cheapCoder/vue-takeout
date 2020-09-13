@@ -8,7 +8,7 @@
         </span>
         <template v-slot:right>
           <span class="header_login">
-            <span class="header_login_text">登录|注册</span>
+            <span class="header_login_text">{{user.name || user.phone || "登录|注册"}}</span>
           </span>
         </template>
       </HeaderGuide>
@@ -50,7 +50,7 @@
         </div>
         <div class="shop_container">
           <ul class="shop_list" v-if="foodCategories.length">
-            <li class="shop_li border-1px" v-for="shop in shops" :key="shop.id">
+              <li  class="shop_li border-1px" v-for="(shop, index) in shops" :key="shop.id" @click="$router.push('/shop')">
               <a>
                 <div class="shop_left">
                   <img class="shop_img" :src="'https://fuss10.elemecdn.com'+ shop.image_path" />
@@ -146,7 +146,7 @@ export default {
     // });
   },
   computed: {
-    ...mapState(["address", "foodCategories", "shops"]),
+    ...mapState(["address", "foodCategories", "shops", "user"]),
     slideFoodCategories() {
       // 方法一
       // let arr = [];

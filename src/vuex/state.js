@@ -6,4 +6,5 @@ export default {
   foodCategories: [],
   shops: [],
   user: {},
+  shopMsg: {},
 }

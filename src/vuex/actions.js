@@ -1,8 +1,9 @@
 import {
-  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE, REMOVEUSER
+  GET_ADDRESS, GET_FOODCATEGORIES, GET_SHOPS, GET_USERMESSAGE, REMOVEUSER, GET_SHOP_MSG
 } from './mutation-type';
 
 import { reqAddress, reqFoodCategories, reqShops, reqAutoLogin } from '../api/index';
+import router from '../router';
 
 export default {
   async getAddress({ commit, state }) {
@@ -37,16 +38,28 @@ export default {
   },
 
   // 自动登录并更新用户信息
-  async login_auto({ commit }) {
-    const result = await reqAutoLogin();
-    console.log(result);
-    result.code || commit(GET_USERMESSAGE, result.data);
+  async login_auto({ commit, state }) {
+    if (localStorage.getItem("userToken") && JSON.stringify(state.user) === "{}") {
+      const result = await reqAutoLogin();
+      if (!result.code) {
+        commit(GET_USERMESSAGE, result.data);
+        let arr = ["/msite", "/order", "/search", "/profile", "/", "/msite/shop"]
+        arr.indexOf(router.currentRoute.path) > -1 || router.replace('/msite');
+      }
+    }
   },
 
   // 登出功能
-  loginOut({commit}) {
+  loginOut({ commit }) {
     localStorage.removeItem("userToken");
     commit(REMOVEUSER)
+  },
 
+  // 获取单个商家的信息
+  getShopMsg({commit}, index) {
+
+    
+    commit(GET_SHOP_MSG, shopMsg)
   }
 }
+

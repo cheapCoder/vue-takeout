@@ -65,3 +65,7 @@ export const reqAutoLogin = () => instance({
     needToken: true
   },
 })
+
+export const reqShopGoods = () => instance("/shopGoods")
+export const reqShopInfo = () => instance("/ShopInfo")
+export const reqShopRating = () => instance("/ShopRating")

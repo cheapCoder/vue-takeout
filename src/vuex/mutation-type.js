@@ -6,3 +6,4 @@ export const GET_FOODCATEGORIES = 'getFoodCategories';
 export const GET_SHOPS = 'getShops';
 export const GET_USERMESSAGE = 'getUserMessage';
 export const REMOVEUSER = 'removeUser';
+export const GET_SHOP_MSG = 'getShopMsg';
