@@ -22,6 +22,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   Indicator.open('加载中...');
 
+  // 处理params参数
   if (config.data instanceof Object) {
     config.data = qs.stringify(config.data)
   }

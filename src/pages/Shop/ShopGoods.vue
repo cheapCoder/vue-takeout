@@ -14,7 +14,7 @@
 <template>
   <div class="goods">
     <div class="menu-wrapper">
-      <ul class="content">
+      <ul class="content" ref="leftFoods">
         <li
           class="menu-item"
           v-for="(goodCategory, index) in shopMsg.goods"
@@ -73,18 +73,38 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapState(["shopMsg"]),
+    ...mapState({
+      shopMsg: (state) => state.shop.shopMsg
+    }),
     currentIndex() {
+      // 方式顶部下拉和底部上滑时左边分类栏无当前样式
       if (this.rScroll < 0) {
         return 0;
       }
       if (this.rScroll > this.goodTops[this.goodTops.length - 1]) {
         return this.goodTops.length - 1;
       }
-      let a = this.goodTops.findIndex((val, index, arr) => {
+      let thisIndex = this.goodTops.findIndex((val, index, arr) => {
         return val <= this.rScroll + 20 && this.rScroll + 20 < arr[index + 1];
       });
-      return a;
+      // 实现左侧分类栏不在页面内时的自动滚动
+      // 方法一：判断当前index的位置是否在页面内
+      this.$nextTick(function() {
+        let thisFood = this.$refs.leftFoods.children[thisIndex];
+        if (
+          thisFood &&
+          (thisFood.clientHeight > 0 || thisFood.clientHeight < 400)
+        ) {
+          this.leftScroll.scrollToElement(thisFood, 600);
+        }
+      });
+      // 方法二： 判断index是否变化 (存在问题。。。)
+      // if(this.oldIndex && this.index !== thisIndex ) {
+      //     this.oldIndex = thisIndex;
+      //     this.leftScroll.scrollToElement(this.$refs.leftFood.children[thisIndex], 600);
+      // }
+
+      return thisIndex;
     },
   },
   methods: {
@@ -106,7 +126,7 @@ export default {
           disableTouch: false, //启用手指触摸
         });
         this.rightScroll = new BScroll(".foods-wrapper", {
-          probeType: 1,
+          probeType: 3,
           click: true,
           mouseWheel: true, //开启鼠标滚轮
           disableMouse: false, //启用鼠标拖动

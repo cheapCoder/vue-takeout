@@ -118,7 +118,9 @@ export default {
   },
   
   computed: {
-    ...mapState(["shopMsg"]),
+    ...mapState({
+      shopMsg: (state) => state.shop.shopMsg
+    }),
   },
 };
 </script>

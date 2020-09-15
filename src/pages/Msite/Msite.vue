@@ -145,8 +145,15 @@ export default {
     //   },
     // });
   },
+  // ["address", "foodCategories", "shops", "user"]
   computed: {
-    ...mapState(["address", "foodCategories", "shops", "user"]),
+    ...mapState({
+      address: (state) => state.msite.address,
+      foodCategories: (state) => state.msite.foodCategories,
+      shops: (state) => state.msite.shops,
+      user: (state) => state.user.user,
+      
+    }),
     slideFoodCategories() {
       // 方法一
       // let arr = [];
