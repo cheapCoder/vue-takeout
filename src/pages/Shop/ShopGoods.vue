@@ -66,53 +66,23 @@ import BScroll from "@better-scroll/core";
 export default {
   data() {
     return {
-      scrollY: 0,
+      rScroll: 0,
+      lScroll: 0,
       goodTops: [],
     };
   },
-  mounted() {
-        // 配置BScroll函数
-        this.leftScroll = new BScroll(".menu-wrapper", {
-          click: true,
-          mouseWheel: true, //开启鼠标滚轮
-          disableMouse: false, //启用鼠标拖动
-          disableTouch: false, //启用手指触摸
-        });
-        this.rightScroll = new BScroll(".foods-wrapper", {
-          probeType: 3,
-          click: true,
-          mouseWheel: true, //开启鼠标滚轮
-          disableMouse: false, //启用鼠标拖动
-          disableTouch: false, //启用手指触摸
-        });
-        // 绑定scroll事件
-        this.rightScroll.on("scroll", (position) => {
-          this.scrollY = -position.y;
-        });
-        // 若觉得probetype为3计算过大可以设置为2,使用scrollEnd修改this.scrollY
-        // food.on("scrollEnd", (position) => {
-        //   this.scrollY = -position.y
-        // });
-
-        // 获取每个food数组的top值
-        let top = 0;
-        this.goodTops.push(top);
-        Array.from(this.$refs.rightFoods.children).forEach((food) => {
-          top += food.clientHeight;
-          this.goodTops.push(top);
-        });
-      },
+  mounted() {},
   computed: {
     ...mapState(["shopMsg"]),
     currentIndex() {
-      if (this.scrollY < 0) {
+      if (this.rScroll < 0) {
         return 0;
       }
-      if (this.scrollY > this.goodTops[this.goodTops.length - 1]) {
+      if (this.rScroll > this.goodTops[this.goodTops.length - 1]) {
         return this.goodTops.length - 1;
       }
       let a = this.goodTops.findIndex((val, index, arr) => {
-        return val <= this.scrollY + 20 && this.scrollY + 20 < arr[index + 1];
+        return val <= this.rScroll + 20 && this.rScroll + 20 < arr[index + 1];
       });
       return a;
     },
@@ -122,7 +92,43 @@ export default {
       // let that =
       let that = this;
       this.rightScroll.scrollTo(0, -that.goodTops[index], 600);
-      this.scrollY = this.goodTops[index];
+      this.rScroll = this.goodTops[index];
+    },
+  },
+  watch: {
+    shopMsg() {
+      this.$nextTick(() => {
+        // 配置BScroll函数
+        this.leftScroll = new BScroll(".menu-wrapper", {
+          click: true,
+          mouseWheel: true, //开启鼠标滚轮
+          disableMouse: false, //启用鼠标拖动
+          disableTouch: false, //启用手指触摸
+        });
+        this.rightScroll = new BScroll(".foods-wrapper", {
+          probeType: 1,
+          click: true,
+          mouseWheel: true, //开启鼠标滚轮
+          disableMouse: false, //启用鼠标拖动
+          disableTouch: false, //启用手指触摸
+        });
+        // 绑定scroll事件
+        this.rightScroll.on("scroll", (position) => {
+          this.rScroll = -position.y;
+        });
+        // 若觉得probetype为3计算过大可以设置为2,使用scrollEnd修改this.rScroll
+        // food.on("scrollEnd", (position) => {
+        //   this.rScroll = -position.y
+        // });
+
+        // 获取每个food数组的top值
+        let top = 0;
+        this.goodTops.push(top);
+        Array.from(this.$refs.rightFoods.children).forEach((food) => {
+          top += food.clientHeight;
+          this.goodTops.push(top);
+        });
+      });
     },
   },
 };
