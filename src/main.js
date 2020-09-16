@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'lib-flexible/flexible'
-import { Button , Popup} from 'mint-ui';
+import { Button , Popup, Lazyload } from 'mint-ui';
 
 import router from './router'
 import Header from './components/Header/Header.vue'
@@ -10,9 +10,13 @@ import * as api from './api/index';
 import i18n from './i18n';
 import "./mock/mock";
 import CarControl from './components/CarControl/CarControl.vue'
+import LazyLoadPic from "./common/images/loading.gif"
 
 Vue.config.productionTip = false
 
+Vue.use(Lazyload, {
+  LazyLoadPic
+});
 // 挂载api到Vue的原型对象上
 Vue.prototype.$api = api;
 

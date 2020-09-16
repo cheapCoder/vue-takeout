@@ -4,23 +4,21 @@
     <div class="food" v-if="showFood">
       <div class="food-content">
         <div class="image-header">
-          <img
-            src="http://fuss10.elemecdn.com/8/a6/453f65f16b1391942af11511b7a90jpeg.jpeg?imageView2/1/w/750/h/750"
-          />
-          <p class="foodpanel-desc">主、辅料:水、大米、南瓜、冰糖等</p>
+          <img v-lazy="food.image" />
+          <p class="foodpanel-desc">{{food.info}}</p>
           <div class="back" @click="toggleShow">
             <i class="iconfont iconhoutui"></i>
           </div>
         </div>
         <div class="content">
-          <h1 class="title">南瓜粥</h1>
+          <h1 class="title">{{food.name}}</h1>
           <div class="detail">
-            <span class="sell-count">月售91份</span>
-            <span class="rating">好评率10%</span>
+            <span class="sell-count">月售{{food.sellCount}}份</span>
+            <span class="rating">好评率{{food.rating}}%</span>
           </div>
           <div class="price">
-            <span class="now">￥9</span>
-            <span class="old" style="display: none;">￥</span>
+            <span class="now">￥{{food.price}}</span>
+            <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
           </div>
           <div class="cartcontrol-wrapper">
             <CarControl :food="food" />
@@ -35,6 +33,9 @@
 
 <script type="text/ecmascript-6">
 export default {
+  // mounted() {
+  //   console.log(this.);
+  // },
   data() {
     return {
       showFood: false,
@@ -54,10 +55,11 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .thisFood-leave-active, .thisFood-enter-active {
-  transition all 0.5s
+  transition: all 0.5s;
 }
+
 .thisFood-leave-to, .thisFood-enter {
-  opacity 0
+  opacity: 0;
 }
 
 .food {

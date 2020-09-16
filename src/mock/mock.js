@@ -5,4 +5,4 @@ import Mock from 'mockjs'
 
 Mock.mock('/api/shopMsg', { code: 0, data })
 
-console.log("mock is serve...");
+// console.log("mock is serve...");
