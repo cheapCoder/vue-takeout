@@ -36,6 +36,8 @@
               class="food-item bottom-border-1px"
               v-for="(food, index) in goodCategory.foods"
               :key="index"
+              @click="showFood(food)"
+
             >
               <div class="icon">
                 <img width="57" height="57" :src="food.image" />
@@ -51,24 +53,29 @@
                   <span class="now">￥{{food.price}}</span>
                   <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
-                <div class="cartcontrol-wrapper">CartControl组件</div>
+                <div class="cartcontrol-wrapper"><CarControl :food="food"/></div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
+    <ShopCar/>
+    <Food :food="food" ref="showThisFood"/>
   </div>
 </template>
 <script type="text/ecmascript-6">
 import { mapState } from "vuex";
 import BScroll from "@better-scroll/core";
+import ShopCar from "../../components/ShopCar/ShopCar"
+import Food from '../../components/Food/Food';
 export default {
   data() {
     return {
       rScroll: 0,
       lScroll: 0,
       goodTops: [],
+      food: {} //点击时在方法内即使赋值
     };
   },
   mounted() {},
@@ -114,6 +121,10 @@ export default {
       this.rightScroll.scrollTo(0, -that.goodTops[index], 600);
       this.rScroll = this.goodTops[index];
     },
+    showFood(food) {
+      this.food = food;
+      this.$refs.showThisFood.toggleShow();
+    }
   },
   watch: {
     shopMsg() {
@@ -151,6 +162,9 @@ export default {
       });
     },
   },
+  components: {
+    ShopCar, Food
+  }
 };
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
@@ -288,8 +302,8 @@ export default {
 
         .cartcontrol-wrapper {
           position: absolute;
-          right: 0;
-          bottom: 12px;
+          right: -15px;
+          bottom: 2px;
         }
       }
     }

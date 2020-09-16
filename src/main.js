@@ -9,6 +9,7 @@ import store from './vuex/store';
 import * as api from './api/index';
 import i18n from './i18n';
 import "./mock/mock";
+import CarControl from './components/CarControl/CarControl.vue'
 
 Vue.config.productionTip = false
 
@@ -18,6 +19,7 @@ Vue.prototype.$api = api;
 Vue.component('HeaderGuide', Header)
 Vue.component(Button.name, Button);
 Vue.component(Popup.name, Popup);
+Vue.component("CarControl", CarControl );
 
 new Vue({
   render: h => h(App),

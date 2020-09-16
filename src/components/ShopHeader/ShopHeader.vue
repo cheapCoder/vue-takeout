@@ -136,14 +136,6 @@ export default {
   opacity: 0;
 }
 
-// .shopDiscount-enter-active, .shopDiscount-leave-active {
-// transition: all 0.4s;
-// }
-
-// .shopDiscount-enter, .shopDiscount-leave-to {
-// opacity: 0;
-// transform: translate(0, 240px);
-// }
 .shop-header {
   height: 100%;
   position: relative;

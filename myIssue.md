@@ -15,4 +15,6 @@
         disableTouch: false    //启用手指触摸
       参考博客：https://www.cnblogs.com/mldonkey/p/11421577.html
 
-4. 
+4. vuex的commit不要随便去掉state参数，以防传入其他参数被当成state
+
+5. 父级组件可以直接调用子级组件的方法，借助ref
