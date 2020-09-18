@@ -129,11 +129,13 @@ export default {
 @import '../../common/stylus/mixins.styl';
 
 .shopItem-enter-active, .shopItem-leave-active {
-  transition: opacity 0.4s;
+  transition: all 0.4s;
 }
 
 .shopItem-enter, .shopItem-leave-to {
   opacity: 0;
+  transform translateY(36%)
+  
 }
 
 .shop-header {
@@ -484,19 +486,13 @@ export default {
     height: 100%;
     z-index: 99;
 
-    &.move-enter-active, &.move-leave-active {
-      transition: opacity 0.3s;
-    }
-
-    &.move-enter-active, &.move-leave-active {
-      opacity: 0;
-    }
-
+    
+    
     .activity-sheet-content {
       position: absolute;
       background-color: #f5f5f5;
       box-shadow: 0 -1px 5px 0 rgba(0, 0, 0, 0.4);
-      bottom: 0;
+      bottom: 0%;
       left: 0;
       right: 0;
       z-index: 100;
@@ -585,8 +581,8 @@ export default {
     .activity-sheet-cover {
       position: absolute;
       width: 100%;
-      height: 100%;
-      top: 0;
+      height: 200%;
+      top: -300px;
       left: 0;
       background-color: rgba(0, 0, 0, 0.5);
     }
