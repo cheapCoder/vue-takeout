@@ -10,7 +10,7 @@
                 :class="{'highlight': shopCar.length}"
               ></i>
             </div>
-            <div class="num">{{totalCount}}</div>
+            <div class="num" v-show="shopCar.length">{{totalCount}}</div>
           </div>
           <div class="price highlight">￥{{totalPrice}}</div>
           <div class="desc">另需配送费￥{{shopInfo.deliveryPrice}}元</div>
