@@ -372,8 +372,8 @@ export default {
     .brief-modal-cover {
       position: absolute;
       width: 100%;
-      height: 100%;
-      top: 0;
+      height: 200%;
+      top: -100%;
       left: 0;
       background-color: rgba(0, 0, 0, 0.5);
       z-index: 1;

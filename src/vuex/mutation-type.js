@@ -9,3 +9,4 @@ export const REMOVEUSER = 'removeUser';
 export const GET_SHOP_MSG = 'getShopMsg';
 export const ADD_FOOD_COUNT = 'addFoodCount';
 export const SUB_FOOD_COUNT = 'subFoodCount';
+export const EMPTYSHOPCAR = 'emptyShopCar';

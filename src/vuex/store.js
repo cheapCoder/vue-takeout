@@ -17,6 +17,6 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    msite, shop, user
+    msite, shop:shop, user
   },
 })

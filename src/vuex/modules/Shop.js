@@ -1,7 +1,7 @@
 import Vue from "vue"
 
 import {
-  GET_SHOP_MSG, ADD_FOOD_COUNT, SUB_FOOD_COUNT
+  GET_SHOP_MSG, ADD_FOOD_COUNT, SUB_FOOD_COUNT, EMPTYSHOPCAR
 } from '../mutation-type'
 import { reqShopMsg } from '../../api/index';
 
@@ -10,6 +10,7 @@ import { reqShopMsg } from '../../api/index';
 export default {
   state: {
     shopMsg: {},
+    shopCar: [],
 
   },
   mutations: {
@@ -17,14 +18,26 @@ export default {
       state.shopMsg = shopMsg;
     },
     [ADD_FOOD_COUNT](state, food) {
-      // if (!food.count) {
-      //   Vue.set(food, "count", 0)
-      // }
-      food.count || Vue.set(food, "count", 0);
-      food.count++;
+      if (food.count) {
+        food.count++;
+      } else {
+        Vue.set(food, "count", 1)
+        state.shopCar.push(food);
+      }
+      console.log(state.shopCar);
     },
     [SUB_FOOD_COUNT](state, food) {
-      food.count && food.count--;
+      if (food.count) {
+        food.count--;
+        food.count === 0 && state.shopCar.splice(state.shopCar.indexOf(food), 1);
+      }
+    },
+    [EMPTYSHOPCAR](state) {
+      state.shopCar.forEach((food) => {
+        food.count = 0;
+      })
+      state.shopCar = []
+      console.log(state.shopCar);
     }
   },
   actions: {
@@ -35,15 +48,21 @@ export default {
       }
     },
 
-    changeFoodCount({ commit }, {isAdd, food}) {
-      if(isAdd) {
+    changeFoodCount({ commit }, { isAdd, food }) {
+      if (isAdd) {
         commit(ADD_FOOD_COUNT, food);
       } else {
         commit(SUB_FOOD_COUNT, food);
       }
-    }
+    },
+    
   },
   getters: {
-
+    totalPrice(state) {
+      return state.shopCar.reduce((pre, val) => pre + val.count * val.price, 0)
+    },
+    totalCount(state) {
+      return state.shopCar.reduce((pre, val) => pre + val.count, 0)
+    }
   }
 }

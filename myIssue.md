@@ -18,3 +18,7 @@
 4. vuex的commit不要随便去掉state参数，以防传入其他参数被当成state
 
 5. 父级组件可以直接调用子级组件的方法，借助ref
+
+6. 注意过渡类名在过渡结束后都会删除，用动画animation才不会删除(记录路径：src/components/shopCar/shopCar.vue的style)
+
+7. 注意$nextTick的使用，特别是使用better-scroll时
