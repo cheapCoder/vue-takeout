@@ -1,5 +1,6 @@
 1. 商家页面第一次进入无法滚动商品和分类 (已解决)
     分析：`src/pages/Shop/ShopGoods.vue `必须等页面的数据`shopMsg`加载完成`new BScroll`才能让betterScroll正确管理完整数据，所以应用watch监视shopMsg，有数据后再`new``
+    new issue： shopCar修改源码后仍需刷新才能滚动，猜测是$nextTick的问题
     <br>
 2. 商家页面的分类部分有时候点击响应不及时
 
@@ -22,3 +23,4 @@
 6. 注意过渡类名在过渡结束后都会删除，用动画animation才不会删除(记录路径：src/components/shopCar/shopCar.vue的style)
 
 7. 注意$nextTick的使用，特别是使用better-scroll时
+ 

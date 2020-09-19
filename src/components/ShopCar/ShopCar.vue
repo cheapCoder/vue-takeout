@@ -100,6 +100,7 @@ export default {
       this.toggleShow = !this.toggleShow;
       if (this.toggleShow == true) {
         this.$nextTick(() => {
+          console.log(this);
           if (this.scroll) {
             console.log("refresh");
             this.scroll.refresh();

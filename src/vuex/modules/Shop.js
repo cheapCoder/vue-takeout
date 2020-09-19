@@ -41,8 +41,8 @@ export default {
     }
   },
   actions: {
-    async getShopMsg({ commit }) {
-      const shopMsg = await reqShopMsg();
+    async getShopMsg({ commit },id) {
+      const shopMsg = await reqShopMsg(id);
       if (!shopMsg.code) {
         commit(GET_SHOP_MSG, shopMsg.data)
       }

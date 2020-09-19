@@ -50,7 +50,7 @@
         </div>
         <div class="shop_container">
           <ul class="shop_list" v-if="foodCategories.length">
-              <li  class="shop_li border-1px" v-for="(shop, index) in shops" :key="shop.id" @click="$router.push('/shop')">
+              <li  class="shop_li border-1px" v-for="(shop, index) in shops" :key="shop.id" @click="$router.push(`/shop/${shop.id}`)">
               <a>
                 <div class="shop_left">
                   <img class="shop_img" :src="'https://fuss10.elemecdn.com'+ shop.image_path" />
@@ -64,11 +64,6 @@
                   </section>
                   <section class="shop_rating_order">
                     <section class="shop_rating_order_left">
-                      <!-- <div class="star star-24" >
-                        <span class="star-item on" v-for="(num, index) in on" :key="index"></span>
-                        <span class="star-item half" v-for="(num, index) in half" :key="index"></span>
-                        <span class="star-item off" v-for="(num, index) in off" :key="index"></span>
-                      </div> -->
                       <Star :rating="shop.rating" size="24"></Star>
                       <div class="rating_section">{{shop.rating.toFixed(1)}}</div>
                       <div class="order_section">月售{{shop.recent_order_num}}单</div>

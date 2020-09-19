@@ -18,7 +18,12 @@
 </template>
 
 <script>
-export default {};
+import { MessageBox  } from 'mint-ui';
+export default {
+  mounted() {
+    MessageBox('此页未制作');
+  },
+};
 </script>
 
 <style lang="stylus" scoped >

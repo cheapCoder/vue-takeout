@@ -66,4 +66,4 @@ export const reqAutoLogin = () => instance({
   },
 })
 
-export const reqShopMsg = () => instance("/shopMsg")
+export const reqShopMsg = (id) => instance(`/shopMsg/${id}`)
