@@ -29,13 +29,9 @@ instance.interceptors.request.use((config) => {
   if (config.headers.needToken) {
     const token = localStorage.getItem("userToken") || '';
     if (token) {
-      // console.log('带上token');
       config.headers['authorization'] = token
-      // console.log(config.headers);
       // config.headers.Authorization = token;
     } else {
-      // console.log(router);
-      //  location.href = '/login';
       throw new Error("请求登录:>");
     }
   }
@@ -52,7 +48,6 @@ instance.interceptors.response.use(
     if (err.response) {  //若是服务器返回，则是资源请求问题
       // Toast(err.message);
       if (err.response.status === 401) {
-        console.log('401了');
         if (router.currentRoute.path !== '/login') {
           // router.currentRoute.path = '/login';
           router.replace('/login');

@@ -33,7 +33,6 @@ export default {
     async getAddress({ commit, state }) {
       let result = await reqAddress(`${state.latitude},${state.longitude}`);
       if (result.code === 0) {
-        // console.log(result.data);
         commit(GET_ADDRESS, result.data);
       }
     },
@@ -43,7 +42,6 @@ export default {
       if (result.code === 0) {
         commit(GET_FOODCATEGORIES, result.data);
       }
-      // console.log( typeof callback);
       typeof callback === 'function' && callback()
     },
   

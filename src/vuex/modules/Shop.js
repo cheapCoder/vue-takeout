@@ -37,7 +37,7 @@ export default {
         food.count = 0;
       })
       state.shopCar = []
-      console.log(state.shopCar);
+      // console.log(state.shopCar);
     }
   },
   actions: {

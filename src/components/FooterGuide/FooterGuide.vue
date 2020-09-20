@@ -24,7 +24,6 @@ export default {
   methods: {
     footerActive(path) {
       // this.$router.replace(path).catch((err) => {
-      //   console.log(err.message);
       // });
       if(this.$route.path === path) {
         this.$router.push = path

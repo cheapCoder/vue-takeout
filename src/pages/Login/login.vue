@@ -182,11 +182,9 @@ export default {
         this.$store.dispatch("setUser", result.data);
         // 登录后跳转路由
         this.$router.push("/profile");
-        // console.log(result);
       }
     },
     changeLang() {
-      // console.log(this.$i18n);
       let lan = this.$i18n.locale
       this.$i18n.locale = lan === 'en' ? 'zh-CN' : 'en';
     },
