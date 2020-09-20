@@ -83,7 +83,6 @@ export default {
       food: {} //点击时在方法内即使赋值
     };
   },
-  mounted() {},
   computed: {
     ...mapState({
       shopMsg: (state) => state.shop.shopMsg
