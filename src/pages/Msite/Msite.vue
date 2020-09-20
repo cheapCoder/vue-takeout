@@ -169,9 +169,6 @@ export default {
       return chunk(this.foodCategories, 8);
     },
   },
-  components: {
-      Star
-    }
 };
 </script>
 

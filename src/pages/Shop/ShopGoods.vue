@@ -67,9 +67,14 @@
 <script type="text/ecmascript-6">
 import { mapState } from "vuex";
 import BScroll from "@better-scroll/core";
+import MouseWheel from '@better-scroll/mouse-wheel'
 import ShopCar from "../../components/ShopCar/ShopCar"
 import Food from '../../components/Food/Food';
+
+BScroll.use(MouseWheel)
+
 export default {
+  name: 'goods',
   data() {
     return {
       rScroll: 0,

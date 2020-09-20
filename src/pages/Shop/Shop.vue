@@ -2,11 +2,11 @@
   <div>
     <ShopHeader />
     <nav>
-      <router-link replace to="`/shop/${$route.params.id}/goods`">点餐</router-link>
-      <router-link replace to="`/shop/${$route.params.id}/shopInfo`">评价</router-link>
-      <router-link replace to="`/shop/${$route.params.id}/shopRatings`">商家</router-link>
+      <router-link replace :to="`/shop/${shopMsg.id}/goods`">点餐</router-link>
+      <router-link replace :to="`/shop/${shopMsg.id}/shopRatings`">评价</router-link>
+      <router-link replace :to="`/shop/${shopMsg.id}/shopInfo`">商家</router-link>
     </nav>
-    <keep-alive>
+    <keep-alive include="goods">
       <router-view></router-view>
     </keep-alive>
   </div>
@@ -14,10 +14,15 @@
 
 <script type="text/ecmascript-6">
 import ShopHeader from "../../components/ShopHeader/ShopHeader";
-
+import { mapState } from 'vuex';
 export default {
   mounted() {
     this.$store.dispatch("getShopMsg", this.$route.params.id);
+  },
+  computed: {
+    ...mapState({
+      shopMsg: state => state.shop.shopMsg
+    })
   },
   components: {
     ShopHeader,

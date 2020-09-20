@@ -31,7 +31,7 @@
           </div>
           <div class="list-content">
             <ul>
-              <li class="food" v-for="food in shopCar" :key="food.name">
+              <li class="food" v-for="food in shopCar" :key="food.id">
                 <span class="name">{{food.name}}</span>
                 <div class="price">
                   <span>￥{{food.price}}</span>
@@ -52,8 +52,11 @@
 </template>
 <script type="text/ecmascript-6">
 import { mapState, mapGetters } from "vuex";
-import BScroll from "@better-scroll/core";
 import { MessageBox, Toast } from "mint-ui";
+import BScroll from "@better-scroll/core";
+import MouseWheel from '@better-scroll/mouse-wheel'
+
+BScroll.use(MouseWheel)
 export default {
   data() {
     return {
@@ -82,7 +85,7 @@ export default {
   methods: {
     settlement() {
       if (this.priceText.type) {
-        MessageBox("你别骗了:>");
+        MessageBox("你要被骗了:>");
       } else {
         MessageBox("未达到起送价");
       }
@@ -109,6 +112,9 @@ export default {
             this.scroll = new BScroll(".list-content", {
               scrollY: true,
               click: true,
+              mouseWheel: true, //开启鼠标滚轮
+              disableMouse: false, //启用鼠标拖动
+              disableTouch: false, //启用手指触摸
             });
           }
         });

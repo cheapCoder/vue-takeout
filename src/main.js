@@ -10,7 +10,9 @@ import * as api from './api/index';
 import i18n from './i18n';
 import "./mock/mock";
 import CarControl from './components/CarControl/CarControl.vue'
+import Star from './components/Star/star.vue'
 import LazyLoadPic from "./common/images/loading.gif"
+
 
 Vue.config.productionTip = false
 
@@ -24,6 +26,8 @@ Vue.component('HeaderGuide', Header)
 Vue.component(Button.name, Button);
 Vue.component(Popup.name, Popup);
 Vue.component("CarControl", CarControl );
+Vue.component("Star", Star );
+
 
 new Vue({
   render: h => h(App),

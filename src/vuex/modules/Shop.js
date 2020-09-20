@@ -63,6 +63,6 @@ export default {
     },
     totalCount(state) {
       return state.shopCar.reduce((pre, val) => pre + val.count, 0)
-    }
+    },
   }
 }

@@ -32,9 +32,9 @@ export default {
         const result = await reqAutoLogin();
         if (!result.code) {
           commit(GET_USERMESSAGE, result.data);
-          let arr = ["/msite", "/order", "/search", "/profile", "/", "/shop/goods", "/shop/shopRatings", "/shop/shopInfo"]
-          arr.indexOf(router.currentRoute.path) > -1 || router.replace('/msite');
-          // router.currentRoute.path === "/login" && router.replace('/msite');
+          // let arr = ["/msite", "/order", "/search", "/profile", "/", "/shop/goods", "/shop/shopRatings", "/shop/shopInfo"]
+          // arr.indexOf(router.currentRoute.path) > -1 || router.replace('/msite');
+          router.currentRoute.path === "/login" && router.replace('/msite');
         }
       }
     },
