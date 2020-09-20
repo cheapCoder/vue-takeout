@@ -24,4 +24,4 @@
 
 8. 注意$nextTick的使用，特别是使用better-scroll时
 
-<!-- 1. 尝试使用history模式 -->
+尝试使用history模式。。。
