@@ -14,18 +14,30 @@
 
 <script type="text/ecmascript-6">
 import ShopHeader from "../../components/ShopHeader/ShopHeader";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
+import { saveFoodCar } from "../../utils/index";
+
 export default {
+  name: "shop",
   mounted() {
     this.$store.dispatch("getShopMsg", this.$route.params.id);
+    const that = this
+    window.addEventListener("unload", () => {
+      saveFoodCar(that.shopMsg.id, that.shopCar);
+    });
   },
   computed: {
     ...mapState({
-      shopMsg: state => state.shop.shopMsg
-    })
+      shopMsg: (state) => state.shop.shopMsg,
+      shopCar: (state) => state.shop.shopCar,
+    }),
   },
   components: {
     ShopHeader,
+  },
+  beforeDestroy() {
+    console.log(this.shopCar);
+    saveFoodCar(this.shopMsg.id, this.shopCar);
   },
 };
 </script>

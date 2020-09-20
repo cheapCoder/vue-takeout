@@ -4,6 +4,7 @@ import {
   GET_SHOP_MSG, ADD_FOOD_COUNT, SUB_FOOD_COUNT, EMPTYSHOPCAR
 } from '../mutation-type'
 import { reqShopMsg } from '../../api/index';
+import { getFoodCar } from "../../utils/index.js"
 
 
 
@@ -14,8 +15,9 @@ export default {
 
   },
   mutations: {
-    [GET_SHOP_MSG](state, shopMsg) {
+    [GET_SHOP_MSG](state, {shopMsg, shopCar}) {
       state.shopMsg = shopMsg;
+      state.shopCar = shopCar
     },
     [ADD_FOOD_COUNT](state, food) {
       if (food.count) {
@@ -42,9 +44,12 @@ export default {
   },
   actions: {
     async getShopMsg({ commit },id) {
+      // 注意shopMsg是一个含有数据data和状态码code的对象
       const shopMsg = await reqShopMsg(id);
+      const shopCar = getFoodCar(shopMsg.data);
+      console.log(shopCar);
       if (!shopMsg.code) {
-        commit(GET_SHOP_MSG, shopMsg.data)
+        commit(GET_SHOP_MSG,{ shopMsg: shopMsg.data, shopCar})
       }
     },
 
