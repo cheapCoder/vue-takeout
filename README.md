@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# vue-外卖项目
-## 请查看my分支
-=======
 # 前端冲冲冲
 
 ## Project setup
@@ -26,4 +22,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> my
