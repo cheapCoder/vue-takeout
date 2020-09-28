@@ -26,7 +26,7 @@ export default {
         Vue.set(food, "count", 1)
         state.shopCar.push(food);
       }
-      console.log(state.shopCar);
+      // console.log(state.shopCar);
     },
     [SUB_FOOD_COUNT](state, food) {
       if (food.count) {

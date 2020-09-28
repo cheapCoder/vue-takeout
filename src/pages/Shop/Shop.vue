@@ -36,7 +36,7 @@ export default {
     ShopHeader,
   },
   beforeDestroy() {
-    console.log(this.shopCar);
+    // console.log(this.shopCar);
     saveFoodCar(this.shopMsg.id, this.shopCar);
   },
 };

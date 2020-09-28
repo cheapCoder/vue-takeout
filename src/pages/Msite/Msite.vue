@@ -2,7 +2,8 @@
   <!--首页外卖-->
   <div class="on">
     <section class="msite">
-      <HeaderGuide :title="address.city || '定位中...'">
+      <!-- <HeaderGuide :title="address.city || '定位中...'"> -->
+      <HeaderGuide :title="'青岛市' || '定位中...'">
         <span class="header_search" slot="left">
           <i class="iconfont iconsousuo"></i>
         </span>

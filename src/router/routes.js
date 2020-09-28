@@ -3,7 +3,7 @@ const Order = () => import('../pages/Order/Order.vue')
 const Search = () => import('../pages/Search/Search.vue')
 const Profile = () => import('../pages/Profile/Profile.vue')
 
-import Login from '../pages/Login/Login.vue';
+import Login from '../pages/Login/login.vue';
 import Shop from "../pages/Shop/Shop.vue"
 import ShopGoods from "../pages/Shop/ShopGoods.vue"
 import ShopInfo from "../pages/Shop/ShopInfo.vue"
