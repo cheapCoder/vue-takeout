@@ -198,6 +198,7 @@ export default {
       }
 
       .iconicontouxiang {
+        color: #006A4A
         font-size: 57px;
       }
 

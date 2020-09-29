@@ -47,7 +47,7 @@ export default {
       // 注意shopMsg是一个含有数据data和状态码code的对象
       const shopMsg = await reqShopMsg(id);
       const shopCar = getFoodCar(shopMsg.data);
-      console.log(shopCar);
+      // console.log(shopCar);
       if (!shopMsg.code) {
         commit(GET_SHOP_MSG,{ shopMsg: shopMsg.data, shopCar})
       }
