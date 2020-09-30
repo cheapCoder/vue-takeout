@@ -12,13 +12,6 @@
         <form>
           <div :class="{on: useSms}">
             <section class="login_message">
-              <!-- <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
-              <button
-                :disabled="!isRightPhone || intervalLastTime > 0"
-                class="get_verification"
-                :class="{on: isRightPhone}"
-                @click.prevent="getSmsCaptcha"
-              >{{intervalLastTime ? `剩余${intervalLastTime}` : '获取验证码'}}</button>-->
               <ValidationProvider rules="tel" v-slot="{ errors }" name="tel">
                 <input type="tel" maxlength="11" placeholder="手机号" v-model="tel_number" />
                 <span style="color: red">{{ errors[0] }}</span>
@@ -125,7 +118,7 @@ export default {
     async getSmsCaptcha() {
       this.intervalLastTime = 5;
 
-      // 防抖
+      // 防抖，也可用lodash做
       lastTimeId && clearInterval(lastTimeId);
       let lastTimeId = setInterval(() => {
         this.intervalLastTime--;
