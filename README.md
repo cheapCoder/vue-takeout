@@ -13,7 +13,7 @@
 - 使用Vue I18n练习部分国际化
 - 使用容联云的免费短信验证码服务进行验证码验证
 - 利用正则进行电话号码格式验证
-
+![手机登陆](./otherPic/手机登陆.png)
 <img src="./otherPic/手机登陆.png" style="display: inline-block; width: 180px">
 <img src="./otherPic/密码登陆.png" style="display: inline-block; width: 180px">
 <br>
