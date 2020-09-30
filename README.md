@@ -3,7 +3,7 @@
 #### demo介绍
 
 
-> 此demo利用Vue,利用Vue-Router + Vue-Cli工程化构建外卖信息展示单页面应用，使用vuex管理主要的商家数据,利用axios的拦截器设置请求参数,利用mock.js模拟后台接口，并用fastclick和postcss-px2rem解决移动端适配问题和300ms延迟问题
+> 此demo利用Vue,利用Vue-Router + Vue-Cli工程化构建外卖信息展示单页面应用，使用vuex管理主要的商家数据,利用axios的拦截器设置请求参数,利用mock.js模拟后台接口，使用mint-ui完成部分组件功能，并用fastclick和postcss-px2rem解决移动端适配问题和300ms延迟问题
 
 
 
