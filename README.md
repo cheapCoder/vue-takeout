@@ -31,7 +31,6 @@
 - 利用watch监视商品信息的变化以修复刷新和路由切换导致无法滚动的bug
 - 自定义了购物车添加按钮组件以进行多次复用，并进行了函数节流以限制添加速度
 
-
 <img alt="商家评价" src="https://github.com/necessityOVO/vueTakeout/blob/master/otherPic/商家评价.png" style="display: inline-block; width: 180px">
 <img alt="商家信息" src="https://github.com/necessityOVO/vueTakeout/blob/master/otherPic/商家信息.png" style="display: inline-block; width: 180px">
 <img alt="商品列表" src="https://github.com/necessityOVO/vueTakeout/blob/master/otherPic/商品列表.png" style="display: inline-block; width: 180px">
