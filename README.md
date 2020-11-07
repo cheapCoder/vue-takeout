@@ -12,13 +12,13 @@
 - 使用容联云的免费短信验证码服务进行验证码验证
 - 利用正则进行电话号码格式验证
 
-<img alt="手机登陆" src="./otherPic/手机登陆.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="密码登陆" src="./otherPic/密码登陆.png" style="display: inline-block; width: 180px; zoom: 33%;">
+<img alt="手机登陆" src="./otherPic/手机登陆.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="密码登陆" src="./otherPic/密码登陆.png" style="display: inline-block; width: 80px; zoom: 33%;">
 
 <br>
 
 #### 一级路由页面(商家列表页，个人信息页)
 
-<img alt="商家展示" src="./otherPic/商家展示.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="登陆退出" src="./otherPic/登陆退出.png" style="display: inline-block; width: 180px; zoom: 33%;">
+<img alt="商家展示" src="./otherPic/商家展示.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="登陆退出" src="./otherPic/登陆退出.png" style="display: inline-block; width: 80px; zoom: 33%;">
 
 
 <br>
@@ -29,7 +29,7 @@
 - 利用watch监视商品信息的变化以修复刷新和路由切换导致无法滚动的bug
 - 自定义了购物车添加按钮组件以进行多次复用，并进行了函数节流以限制添加速度
 
-<img alt="商家评价" src="./otherPic/商家评价.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="商家信息" src="./otherPic/商家信息.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="商品列表" src="./otherPic/商品列表.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="购物车" src="./otherPic/购物车.png" style="display: inline-block; width: 180px; zoom: 33%;"><img alt="商家信息卡片" src="./otherPic/商家信息卡片.png" style="display: inline-block; width: 180px; zoom: 33%;">
+<img alt="商家评价" src="./otherPic/商家评价.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="商家信息" src="./otherPic/商家信息.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="商品列表" src="./otherPic/商品列表.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="购物车" src="./otherPic/购物车.png" style="display: inline-block; width: 80px; zoom: 33%;"><img alt="商家信息卡片" src="./otherPic/商家信息卡片.png" style="display: inline-block; width: 80px; zoom: 33%;">
 
 
 
