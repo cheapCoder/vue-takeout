@@ -13,7 +13,7 @@
     "@better-scroll/mouse-wheel": "^2.0.4",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.9.7",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.20",
     "mint-ui": "^2.2.13",
