@@ -19,7 +19,7 @@
     "mint-ui": "^2.2.13",
     "mockjs": "^1.1.0",
     "postcss-px2rem": "^0.3.0",
-    "swiper": "^6.2.0",
+    "swiper": "^6.4.5",
     "vee-validate": "^3.3.9",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
