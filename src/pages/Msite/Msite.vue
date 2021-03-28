@@ -51,7 +51,7 @@
         </div>
         <div class="shop_container">
           <ul class="shop_list" v-if="foodCategories.length">
-              <li  class="shop_li border-1px" v-for="(shop, index) in shops" :key="shop.id" @click="$router.push(`/shop/${shop.id}`)">
+              <li  class="shop_li border-1px" v-for="shop in shops" :key="shop.id" @click="$router.push(`/shop/${shop.id}`)">
               <a>
                 <div class="shop_left">
                   <img class="shop_img" :src="'https://fuss10.elemecdn.com'+ shop.image_path" />
@@ -97,11 +97,10 @@
 </template>
 
 <script type="text/ecmascript-6">
-import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
+import Swiper from "swiper";
 import { mapState } from "vuex";
 import chunk from "lodash/chunk";
-import Star from '../../components/Star/star'
 
 export default {
   // 解决swiper对象new的过早的问题

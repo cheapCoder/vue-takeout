@@ -85,7 +85,7 @@
 import { Toast  } from "mint-ui";
 import { ValidationProvider, extend } from "vee-validate";
 
-extend("tel", {
+extend("tel", {     //表单验证
   validate: (value) => /^1\d{10}$/.test(value),
   message: "电话号码格式错误",
 });
@@ -133,12 +133,16 @@ export default {
           duration: 1000,
         });
       } else {
-        alert(result.msg);
+        // alert(result.msg);
+        Toast({
+          message: result.msg,
+          position: "bottom",
+          duration: 1000,
+        });
       }
     },
     getPWCaptcha() {
-      this.$refs.captcha.src =
-        "http://localhost:4000/captcha?time=" + Date.now();
+      this.$refs.captcha.src = "http://localhost:4000/captcha?time=" + Date.now();   // 修改img的src属性即可
     },
     async login() {
       // 前端验证未加
@@ -184,7 +188,6 @@ export default {
   },
   components: {
     ValidationProvider,
-    
   },
 };
 </script>

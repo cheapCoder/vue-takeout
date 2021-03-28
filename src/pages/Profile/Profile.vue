@@ -126,7 +126,7 @@ export default {
           this.$store.dispatch("loginOut");
           this.$router.replace("/login")
         }
-      );
+      ).catch(err => {});
     },
   },
 };

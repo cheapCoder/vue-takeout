@@ -51,14 +51,13 @@ instance.interceptors.response.use(
         if (router.currentRoute.path !== '/login') {
           // router.currentRoute.path = '/login';
           router.replace('/login');
-
         }
       } else if (err.response.status === 404) {
         MessageBox("请求资源404");
       } else {
-        Toast("请求有其它问题")
+        Toast("请求有其它问题");
       }
-    } else {        //若不是服务器返回，则是无token被拦截
+    } else {        //若不是服务器返回，则是无token被interceptor.request拦截
       router.replace('/login')
       // Toast("没有token:" + err.message);
     }

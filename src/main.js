@@ -22,9 +22,9 @@ Vue.use(Lazyload, {
 // 挂载api到Vue的原型对象上
 Vue.prototype.$api = api;
 
-Vue.component('HeaderGuide', Header)
 Vue.component(Button.name, Button);
 Vue.component(Popup.name, Popup);
+Vue.component('HeaderGuide', Header)
 Vue.component("CarControl", CarControl );
 Vue.component("Star", Star );
 
