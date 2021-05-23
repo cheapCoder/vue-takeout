@@ -1,5 +1,7 @@
 ## 介绍
 
+#### 2021/5/23更新：将使用vue3、vite、typescript、vant重写
+
 > 此 demo 利用 Vue,利用 Vue-Router + Vue-Cli 工程化构建外卖信息展示单页面应用，使用 vuex 管理主要的商家数据,利用 axios 的拦截器设置请求参数,利用 mock.js 模拟后台接口，使用 mint-ui 完成部分组件功能，并用 fastclick 和 postcss-px2rem 解决移动端适配问题和 300ms 延迟问题
 
 #### 登陆页
