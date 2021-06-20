@@ -60,7 +60,7 @@ app.get('/test', function (req, res) {
 })*/
 
 // 通过mongoose连接数据库
-mongoose.connect('mongodb://localhost/gshop', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/gshop', {useNewUrlParser: true,useUnifiedTopology: true})
   .then(() => {
     console.log('连接数据库成功!!!')
     // 只有当连接上数据库后才去启动服务器
