@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="./what.css" />
+	</head>
+	<body>
+    <main>
+      <table v-show="!emptyShow">
+        <thead>
+          <tr>
+            <th></th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in message">
+            <td>{{item.index}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.releaseDate}}</td>
+            <td>￥{{item.price.toFixed(2)}}</td>
+            <td><button @click="sub(item)">-</button>{{item.num}}<button @click="item.num++">+</button></td>
+            <td><button @click="sun(index)">移除</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-show="!emptyShow">总价: ￥{{totalPrice}}</div>
+      <h1 v-show="emptyShow">购物车为空</h1>
+    </main>
+		<!--记得引入vue！-->
+		<script src="./vue.js"></script>
+		<script src="./what.js"></script>
+	</body>
+</html>

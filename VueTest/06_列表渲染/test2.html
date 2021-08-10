@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="searchContent" />
+			<ul>
+				<li v-for="(val, index) in filterArr" :key="val.name">
+					{{index}}---{{val.name}}---{{val.age}}
+				</li>
+			</ul>
+			<button @click="sortType=1">click it to up_sort</button>
+			<button @click="sortType=0">click it to origin</button>
+			<button @click="sortType=-1;">click it to down_sort</button>
+		</div>
+
+		<!--记得引入vue！-->
+		<script src="../js/vue.js"></script>
+		<script>
+			//创建Vue实例,得到 ViewModel
+			const app = new Vue({
+				el: "#app",
+				data: {
+					searchContent: "",
+					message: "hello vue",
+					sortType: 0, //0: 原来顺序 , 1: 升序， -1: 降序
+					persons: [
+						{ id: 1, name: "Tom", age: 15 },
+						{ id: 2, name: "Jack", age: 12 },
+						{ id: 4, name: "Bob", age: 17 },
+						{ id: 6, name: "Rose", age: 16 },
+						{ id: 8, name: "Else", age: 13 },
+					],
+				},
+				computed: {
+					filterArr() {
+            let arr = this.persons;
+            console.log(123);
+						arr = this.persons.filter((val, index) => {
+							return (
+								val.name.toUpperCase().indexOf(
+									this.searchContent.toUpperCase()
+								) != "-1"
+							);
+						});
+						arr.sort((left, right) => {
+							if (this.sortType === 1) {
+                return left.age - right.age; 
+							} else if (this.sortType === -1) {
+                return right.age - left.age 
+              } 
+            });
+            return arr;
+					},
+				},
+			});
+		</script>
+	</body>
+</html>

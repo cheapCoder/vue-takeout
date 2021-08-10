@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>17_插件</title>
+	</head>
+	<body>
+		<div id="demo">
+			<p v-heng-directive="message"></p>
+		</div>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script src="./what.js"></script>
+		<script type="text/javascript">
+			// Vue.globalMethod();
+			Vue.use(myPlugin);
+			Vue.globalMethod();
+			new Vue({
+				el: "#demo",
+				data() {
+					return {
+						message: "new life",
+					};
+				},
+			}).$method();
+		</script>
+	</body>
+</html>

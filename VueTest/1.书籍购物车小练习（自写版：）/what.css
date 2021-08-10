@@ -1,0 +1,21 @@
+* {
+	font-size: small;
+	/* margin: auto; */
+	text-align: center;
+}
+td {
+	border: 1px solid #ccc;
+  
+}
+thead tr {
+	background-color: #ccc;
+}
+table {
+	width: 380px;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+div {
+  width: 80px;
+  /* margin-left: 10px; */
+}

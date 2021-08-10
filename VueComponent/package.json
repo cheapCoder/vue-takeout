@@ -1,0 +1,37 @@
+{
+  "name": "heng_vue-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "author": "liheng",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.2",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "vue-loader": "^15.9.3",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "babel-polyfill": "^6.26.0",
+    "vue": "^2.6.12",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.4.3",
+    "vuex": "^3.5.1"
+  }
+}

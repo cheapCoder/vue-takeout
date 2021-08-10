@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="demo">
+    <heng_button></heng_button>
+    <heng_button></heng_button>
+    <heng_button></heng_button>
+    <hr>
+    <another v-for="val in posts" :title="val.title"></another>
+  </div>
+  <!-- <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.0-rc.6/vue.cjs.prod.js"></script> -->
+  <script src="./vue.js"></script>
+  <script>
+    Vue.component('heng_button', {
+      template: '<button @click="count++">click it---{{count}}</button>',
+      data() {
+        return {
+          count: 0
+        }
+      }
+    });
+    Vue.component('another', {
+      template: '<div><h2>{{title}}<heng_button></heng_button></h2></div>',
+      props: ['title']
+    })
+    Vue.component('')
+    new Vue({
+      data: {
+        posts: [
+      { id: 1, title: '我的 Vue 旅程' },
+      { id: 2, title: '用 Vue 写博客' },
+      { id: 3, title: 'Vue 如此有趣' }
+    ]
+      }
+    }).$mount('#demo')
+  </script>
+</body>
+</html>

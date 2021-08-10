@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <div id ="app">
+      <input  v-model='message'>
+      <p>{{message}}</p>
+    </div>
+    <div id="test2">{{}}message</div>
+    <!--记得引入vue！-->
+    <script src="../js/vue.js"></script>
+    <script>
+      
+      //创建Vue实例,得到 ViewModel
+    const app = new Vue({
+        el: '#app',
+        data: {
+          message: "hello vue",
+          
+        },
+        methods: {
+          
+        }
+    });
+    new Vue({
+      data: {
+        message: 'second'
+      }
+    }).$mount('#test2')
+    </script>
+  </body>
+</html>
